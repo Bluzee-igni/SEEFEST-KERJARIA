@@ -305,7 +305,7 @@ function JobCard({ title, description, isMore }) {
   );
 }
 
-export default function LandingPage() {
+export default function LandingPage({ onStartQuest }) {
   return (
     <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] tracking-[0px] text-[#20242a]">
       <style>
@@ -346,7 +346,11 @@ export default function LandingPage() {
           </h1>
 
           <div className="mt-16 flex w-full max-w-[230px] flex-col gap-3 md:ml-8">
-            <button className="h-[38px] rounded-[7px] bg-[#075fd4] text-[9px] font-semibold tracking-[0px] text-white shadow-[0_8px_16px_rgba(7,95,212,0.36)]">
+            <button
+              type="button"
+              onClick={onStartQuest}
+              className="h-[38px] rounded-[7px] bg-[#075fd4] text-[9px] font-semibold tracking-[0px] text-white shadow-[0_8px_16px_rgba(7,95,212,0.36)]"
+            >
               Mulai Quest Sekarang
             </button>
             <button className="h-[32px] rounded-[6px] border border-[#075fd4] text-[9px] font-semibold tracking-[0px] text-[#075fd4]">
@@ -469,7 +473,11 @@ export default function LandingPage() {
             <span className="block">bersama KerjaRia</span>
           </h2>
 
-          <button className="mt-10 h-[42px] w-full max-w-[235px] rounded-[7px] bg-[#075fd4] text-[10px] font-semibold tracking-[0px] text-white shadow-[0_9px_15px_rgba(7,95,212,0.36)]">
+          <button
+            type="button"
+            onClick={onStartQuest}
+            className="mt-10 h-[42px] w-full max-w-[235px] rounded-[7px] bg-[#075fd4] text-[10px] font-semibold tracking-[0px] text-white shadow-[0_9px_15px_rgba(7,95,212,0.36)]"
+          >
             Mulai Quest Sekarang
           </button>
         </div>
