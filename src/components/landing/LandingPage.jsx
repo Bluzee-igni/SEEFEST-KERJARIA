@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 
 const blue = "#075fd4";
@@ -392,7 +392,7 @@ export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
             >
               Mulai Quest Sekarang
             </button>
-            <button className="h-[32px] lg:h-[40px] rounded-[6px] border border-[#075fd4] text-[9px] lg:text-[12px] font-semibold tracking-[0px] text-[#075fd4] hover:bg-blue-50 transition-colors">
+            <button onClick={onLogin} className="h-[32px] lg:h-[40px] rounded-[6px] border border-[#075fd4] text-[9px] lg:text-[12px] font-semibold tracking-[0px] text-[#075fd4] hover:bg-blue-50 transition-colors">
               Sudah Punya Akun
             </button>
           </div>
@@ -567,3 +567,4 @@ export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
     </main>
   );
 }
+

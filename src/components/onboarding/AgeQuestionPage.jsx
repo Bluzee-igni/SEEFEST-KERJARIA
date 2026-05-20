@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from 'framer-motion';
 
 function RobotEars() {
   return (
@@ -34,26 +35,24 @@ export default function AgeQuestionPage({ onClose, onLogin, onNext }) {
 
   function handleNext() {
     setSubmitted(true);
-
     if (!isValidAge) return;
-
     onNext?.(age);
   }
 
   return (
-    <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#111827]">
+    <main className="flex min-h-screen flex-col bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#111827]">
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
           html, body, #root { margin: 0; min-height: 100%; background: #ffffff; }
           body { overflow-x: hidden; }`}
       </style>
 
-      <header className="flex h-[76px] items-start justify-between px-7 pt-7 sm:px-9 sm:pt-7">
+      <header className="flex h-[76px] shrink-0 items-start justify-between px-7 pt-7 sm:px-9 sm:pt-7">
         <button
           type="button"
           onClick={onClose}
           aria-label="Kembali ke landing page"
-          className="grid h-[31px] w-[31px] place-items-center rounded-[6px] bg-[#cfe8ff] text-[20px] font-extrabold leading-none text-[#075fd4] sm:h-[42px] sm:w-[42px] sm:text-[29px]"
+          className="grid h-[31px] w-[31px] place-items-center rounded-[6px] bg-[#cfe8ff] text-[20px] font-extrabold leading-none text-[#075fd4] sm:h-[42px] sm:w-[42px] sm:text-[29px] hover:bg-[#075fd4] hover:text-white transition-all duration-300"
         >
           X
         </button>
@@ -61,50 +60,78 @@ export default function AgeQuestionPage({ onClose, onLogin, onNext }) {
         <button
           type="button"
           onClick={onLogin}
-          className="h-[28px] min-w-[61px] rounded-[6px] bg-[#075fd4] px-5 text-[7px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)] sm:h-[34px] sm:min-w-[82px] sm:text-[8px]"
+          className="h-[28px] min-w-[61px] rounded-[6px] bg-[#075fd4] px-5 text-[7px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)] sm:h-[34px] sm:min-w-[82px] sm:text-[8px] hover:bg-[#0550b3] hover:shadow-[0_12px_24px_rgba(7,95,212,0.45)] transition-all duration-300"
         >
           Login
         </button>
       </header>
 
-      <section className="flex justify-center px-5 pb-16 pt-5 sm:pt-4">
-        <div className="relative w-full max-w-[362px] rounded-[22px] bg-[#075fd4] px-6 pb-8 pt-12 text-white shadow-[0_12px_0_#034aa8] sm:max-w-[495px] sm:rounded-[30px] sm:px-9 sm:pb-11 sm:pt-14">
+      <section className="flex flex-1 items-center justify-center px-5 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className="relative w-full max-w-[362px] rounded-[22px] bg-[#075fd4] px-6 pb-8 pt-12 text-white shadow-[0_12px_0_#034aa8] sm:max-w-[495px] sm:rounded-[30px] sm:px-9 sm:pb-11 sm:pt-14"
+        >
           <RobotEars />
 
-          <h1 className="text-center text-[20px] font-extrabold leading-none tracking-[0px] sm:text-[28px]">
+          <motion.h1
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.4 }}
+            className="text-center text-[20px] font-extrabold leading-none tracking-[0px] sm:text-[28px]"
+          >
             Berapa usiamu?
-          </h1>
+          </motion.h1>
 
-          <div className="mt-7 sm:mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="mt-7 sm:mt-8"
+          >
             <input
               value={age}
               onChange={handleAgeChange}
               inputMode="numeric"
               aria-label="Usia"
               placeholder="Usia"
-              className="h-[45px] w-full rounded-[6px] border-[3px] border-white bg-[#6196d7] px-4 text-[19px] font-semibold text-white outline-none placeholder:text-white/90 focus:ring-4 focus:ring-white/20 sm:h-[62px] sm:rounded-[8px] sm:px-5 sm:text-[26px]"
+              className="h-[45px] w-full rounded-[8px] border-[3px] border-white bg-[#6196d7] px-4 text-[19px] font-semibold text-white outline-none placeholder:text-white/90 focus:ring-4 focus:ring-white/30 focus:bg-[#5588cc] sm:h-[62px] sm:px-5 sm:text-[26px] transition-all duration-300"
             />
 
             {submitted && !isValidAge && (
-              <p className="mt-2 text-[9px] font-extrabold text-[#ffe16a] sm:text-[11px]">
+              <motion.p
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-2 text-[9px] font-extrabold text-[#ffe16a] sm:text-[11px]"
+              >
                 Masukkan usia antara 7 sampai 30 tahun.
-              </p>
+              </motion.p>
             )}
             {submitted && isValidAge && (
-              <p className="mt-2 text-[9px] font-extrabold text-[#d9f99d] sm:text-[11px]">
+              <motion.p
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-2 text-[9px] font-extrabold text-[#d9f99d] sm:text-[11px]"
+              >
                 Siap, kamu bisa lanjut ke quest berikutnya.
-              </p>
+              </motion.p>
             )}
-          </div>
+          </motion.div>
 
-          <button
+          <motion.button
             type="button"
             onClick={handleNext}
-            className="mt-7 h-[42px] w-full rounded-[4px] bg-white text-[18px] font-extrabold tracking-[0px] text-black transition active:translate-y-1 sm:h-[54px] sm:rounded-[6px] sm:text-[24px]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.4 }}
+            whileHover={{ scale: 1.03, y: -3 }}
+            whileTap={{ scale: 0.97 }}
+            className="mt-7 h-[42px] w-full rounded-[8px] bg-white text-[18px] font-extrabold tracking-[0px] text-black shadow-[0_8px_0_-3px_#b9d9ff] hover:shadow-[0_12px_0_-3px_#b9d9ff] transition-shadow duration-300 sm:h-[54px] sm:text-[24px]"
           >
             Berikutnya
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </section>
     </main>
   );

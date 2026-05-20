@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from 'framer-motion';
 
 const interests = [
   "Artificial Intelligence",
@@ -45,7 +46,7 @@ function RobotEars() {
 
 function CodeIcon() {
   return (
-    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[2px] border border-[#ff9800] bg-[#ffdca2] text-[12px] font-extrabold text-[#ff8700]">
+    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[4px] border border-[#ff9800] bg-[#ffdca2] text-[12px] font-extrabold text-[#ff8700]">
       &lt;/&gt;
     </span>
   );
@@ -57,26 +58,24 @@ export default function LearningInterestPage({ onClose, onLogin, onNext }) {
 
   function handleNext() {
     setSubmitted(true);
-
     if (!selectedInterest) return;
-
     onNext?.(selectedInterest);
   }
 
   return (
-    <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#111827]">
+    <main className="flex min-h-screen flex-col bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#111827]">
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
           html, body, #root { margin: 0; min-height: 100%; background: #ffffff; }
           body { overflow-x: hidden; }`}
       </style>
 
-      <header className="flex h-[76px] items-start justify-between px-7 pt-7 sm:px-9 sm:pt-7">
+      <header className="flex h-[76px] shrink-0 items-start justify-between px-7 pt-7 sm:px-9 sm:pt-7">
         <button
           type="button"
           onClick={onClose}
           aria-label="Kembali ke landing page"
-          className="grid h-[31px] w-[31px] place-items-center rounded-[6px] bg-[#cfe8ff] text-[20px] font-extrabold leading-none text-[#075fd4] sm:h-[42px] sm:w-[42px] sm:text-[29px]"
+          className="grid h-[31px] w-[31px] place-items-center rounded-[6px] bg-[#cfe8ff] text-[20px] font-extrabold leading-none text-[#075fd4] sm:h-[42px] sm:w-[42px] sm:text-[29px] hover:bg-[#075fd4] hover:text-white transition-all duration-300"
         >
           X
         </button>
@@ -84,75 +83,89 @@ export default function LearningInterestPage({ onClose, onLogin, onNext }) {
         <button
           type="button"
           onClick={onLogin}
-          className="h-[28px] min-w-[61px] rounded-[6px] bg-[#075fd4] px-5 text-[7px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)] sm:h-[34px] sm:min-w-[82px] sm:text-[8px]"
+          className="h-[28px] min-w-[61px] rounded-[6px] bg-[#075fd4] px-5 text-[7px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)] sm:h-[34px] sm:min-w-[82px] sm:text-[8px] hover:bg-[#0550b3] hover:shadow-[0_12px_24px_rgba(7,95,212,0.45)] transition-all duration-300"
         >
           Login
         </button>
       </header>
 
-      <section className="flex justify-center px-5 pb-16 pt-5 sm:pt-4">
-        <div className="relative w-full max-w-[716px] rounded-[22px] bg-[#075fd4] px-6 pb-9 pt-16 text-white shadow-[0_12px_0_#034aa8] sm:rounded-[30px] sm:px-10 md:px-12">
+      <section className="flex flex-1 items-center justify-center px-5 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className="relative w-full max-w-[716px] rounded-[22px] bg-[#075fd4] px-6 pb-9 pt-16 text-white shadow-[0_12px_0_#034aa8] sm:rounded-[30px] sm:px-10 md:px-12"
+        >
           <RobotEars />
 
-          <h1 className="text-center text-[24px] font-extrabold leading-none tracking-[0px] sm:text-[28px]">
+          <motion.h1
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.4 }}
+            className="text-center text-[24px] font-extrabold leading-none tracking-[0px] sm:text-[28px]"
+          >
             Aku ingin mempelajari...
-          </h1>
+          </motion.h1>
 
           <div className="mt-11 grid grid-cols-1 gap-x-4 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
-            {interests.map((interest) => {
+            {interests.map((interest, index) => {
               const isSelected = selectedInterest === interest.id;
 
               return (
-                <button
+                <motion.button
                   type="button"
                   key={interest.id}
                   onClick={() => {
                     setSelectedInterest(interest.id);
                     setSubmitted(false);
                   }}
-                  className={`grid h-[96px] grid-cols-[32px_minmax(0,1fr)] items-center gap-5 rounded-[4px] bg-white px-4 text-left text-black shadow-[0_8px_0_-2px_#b9d9ff] transition ${
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + index * 0.04, duration: 0.35 }}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`grid h-[96px] grid-cols-[32px_minmax(0,1fr)] items-center gap-5 rounded-[8px] bg-white px-4 text-left text-black shadow-[0_8px_0_-2px_#b9d9ff] transition-all duration-300 ${
                     isSelected
-                      ? "ring-4 ring-[#ffd66b]"
-                      : "hover:-translate-y-0.5 hover:shadow-[0_10px_0_-2px_#b9d9ff]"
+                      ? "ring-4 ring-[#ffd66b] shadow-[0_8px_0_-2px_#ffd66b]"
+                      : "hover:shadow-[0_12px_0_-2px_#b9d9ff]"
                   }`}
                 >
                   <CodeIcon />
                   <span className="min-w-0 max-w-[92px] text-[13px] font-extrabold leading-[1.04] tracking-[0px]">
                     {interest.title}
                   </span>
-                </button>
+                </motion.button>
               );
             })}
           </div>
 
           <div className="mt-7 flex flex-col items-center gap-4">
             {submitted && !selectedInterest && (
-              <p className="text-[11px] font-extrabold text-[#ffe16a]">
+              <motion.p
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-[11px] font-extrabold text-[#ffe16a]"
+              >
                 Pilih salah satu bidang yang ingin kamu pelajari.
-              </p>
+              </motion.p>
             )}
 
-            {selectedInterest && (
-              <button
-                type="button"
-                onClick={handleNext}
-                className="h-[42px] w-full max-w-[210px] rounded-[6px] bg-white text-[16px] font-extrabold text-black"
-              >
-                Berikutnya
-              </button>
-            )}
-
-            {!selectedInterest && (
-              <button
-                type="button"
-                onClick={handleNext}
-                className="h-[42px] w-full max-w-[210px] rounded-[6px] bg-white/90 text-[16px] font-extrabold text-black"
-              >
-                Berikutnya
-              </button>
-            )}
+            <motion.button
+              type="button"
+              onClick={handleNext}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.4 }}
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              className={`h-[42px] w-full max-w-[210px] rounded-[8px] text-[16px] font-extrabold text-black shadow-[0_8px_0_-3px_#b9d9ff] hover:shadow-[0_12px_0_-3px_#b9d9ff] transition-all duration-300 ${
+                selectedInterest ? "bg-white" : "bg-white/90"
+              }`}
+            >
+              Berikutnya
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );

@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 function RobotEars() {
   return (
     <svg
@@ -62,19 +64,19 @@ function StoreIcon() {
 
 export default function RoleSelectionPage({ onClose, onLogin, onSelectRole }) {
   return (
-    <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#111827]">
+    <main className="flex min-h-screen flex-col bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#111827]">
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
           html, body, #root { margin: 0; min-height: 100%; background: #ffffff; }
           body { overflow-x: hidden; }`}
       </style>
 
-      <header className="flex h-[76px] items-start justify-between px-7 pt-7 sm:px-9 sm:pt-7">
+      <header className="flex h-[76px] shrink-0 items-start justify-between px-7 pt-7 sm:px-9 sm:pt-7">
         <button
           type="button"
           onClick={onClose}
           aria-label="Kembali ke landing page"
-          className="grid h-[37px] w-[37px] place-items-center rounded-[7px] bg-[#cfe8ff] text-[24px] font-extrabold leading-none text-[#075fd4]"
+          className="grid h-[37px] w-[37px] place-items-center rounded-[7px] bg-[#cfe8ff] text-[24px] font-extrabold leading-none text-[#075fd4] hover:bg-[#075fd4] hover:text-white transition-all duration-300"
         >
           X
         </button>
@@ -82,40 +84,60 @@ export default function RoleSelectionPage({ onClose, onLogin, onSelectRole }) {
         <button
           type="button"
           onClick={onLogin}
-          className="h-[31px] min-w-[77px] rounded-[6px] bg-[#075fd4] px-5 text-[7px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)]"
+          className="h-[31px] min-w-[77px] rounded-[6px] bg-[#075fd4] px-5 text-[7px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)] hover:bg-[#0550b3] hover:shadow-[0_12px_24px_rgba(7,95,212,0.45)] transition-all duration-300"
         >
           Login
         </button>
       </header>
 
-      <section className="flex justify-center px-5 pb-16 pt-6 sm:pt-4">
-        <div className="relative w-full max-w-[454px] rounded-[25px] bg-[#075fd4] px-8 pb-20 pt-16 text-white shadow-[0_12px_0_#034aa8] sm:px-9">
+      <section className="flex flex-1 items-center justify-center px-5 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className="relative w-full max-w-[454px] rounded-[25px] bg-[#075fd4] px-8 pb-20 pt-16 text-white shadow-[0_12px_0_#034aa8] sm:px-9"
+        >
           <RobotEars />
 
-          <h1 className="text-center text-[26px] font-extrabold leading-none tracking-[0px]">
+          <motion.h1
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.4 }}
+            className="text-center text-[26px] font-extrabold leading-none tracking-[0px]"
+          >
             Daftar sebagai apa?
-          </h1>
+          </motion.h1>
 
           <div className="mt-16 flex flex-col gap-7">
-            <button
+            <motion.button
               type="button"
               onClick={() => onSelectRole("pelajar")}
-              className="flex h-[92px] items-center justify-center gap-9 rounded-[4px] bg-white text-[25px] font-extrabold uppercase tracking-[0px] text-black shadow-[0_16px_0_-5px_#b9d9ff]"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              whileHover={{ scale: 1.03, y: -4 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex h-[92px] items-center justify-center gap-9 rounded-[10px] bg-white text-[25px] font-extrabold uppercase tracking-[0px] text-black shadow-[0_16px_0_-5px_#b9d9ff] hover:shadow-[0_20px_0_-5px_#b9d9ff] transition-shadow duration-300"
             >
               <GraduationIcon />
               Pelajar
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
               type="button"
               onClick={() => onSelectRole("umkm")}
-              className="flex h-[92px] items-center justify-center gap-9 rounded-[4px] border-[3px] border-[#b9d9ff] bg-[#075fd4] text-[25px] font-extrabold uppercase tracking-[0px] text-white shadow-[0_16px_0_-5px_#b9d9ff]"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.55, duration: 0.4 }}
+              whileHover={{ scale: 1.03, y: -4 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex h-[92px] items-center justify-center gap-9 rounded-[10px] border-[3px] border-[#b9d9ff] bg-[#075fd4] text-[25px] font-extrabold uppercase tracking-[0px] text-white shadow-[0_16px_0_-5px_#b9d9ff] hover:shadow-[0_20px_0_-5px_#b9d9ff] transition-shadow duration-300"
             >
               <StoreIcon />
               UMKM
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );

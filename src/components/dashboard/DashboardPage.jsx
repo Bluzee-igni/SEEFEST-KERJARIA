@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import VerifikasiModal from './VerifikasiModal';
+import PrivasiDataContent from './PrivasiDataContent';
 import MissionDetailModal from "./MissionDetailModal";
+import PekerjaanDetailModal from "./PekerjaanDetailModal";
+import PekerjaanActionModal from "./PekerjaanActionModal";
 
 const menuItems = [
   { label: "Beranda", icon: "home" },
@@ -1043,103 +1047,273 @@ function MisiPanel() {
 }
 
 const PEKERJAAN_DATA = [
-  { id: 1, title: "Buat Landing Page UMKM", fee: "Rp 150.000", company: "PT Bensin Habis Dorong", icon: "layout", color: "bg-blue-100 text-blue-600" },
-  { id: 2, title: "Edit Video Reels 30 Detik", fee: "Rp 50.000", company: "PT Rebahan Sukses Makmur", icon: "edit", color: "bg-pink-100 text-pink-600" },
-  { id: 3, title: "Desain Logo Kedai Kopi", fee: "Rp 100.000", company: "PT Senyum Terpaksa Tbk", icon: "edit", color: "bg-orange-100 text-orange-600" },
-  { id: 4, title: "Bikin Script Presentasi", fee: "Rp 75.000", company: "PT Maju Kena Mundur Kena", icon: "book", color: "bg-green-100 text-green-600" },
-  { id: 5, title: "Input Data Laporan Bulanan", fee: "Rp 40.000", company: "PT Berkah Abadi", icon: "layout", color: "bg-purple-100 text-purple-600" },
-  { id: 6, title: "Voice Over Video Animasi", fee: "Rp 85.000", company: "PT Kucing Oren", icon: "check", color: "bg-red-100 text-red-600" },
-  { id: 7, title: "Bantu Setup Server Discord", fee: "Rp 50.000", company: "PT Begadang Demi UKL", icon: "gear", color: "bg-gray-200 text-gray-700" },
-  { id: 8, title: "Optimasi SEO Blog Desa", fee: "Rp 120.000", company: "PT Budi Selamat Suyojono", icon: "code", color: "bg-teal-100 text-teal-600" },
+  { 
+    id: 1, 
+    title: "Buat Landing Page UMKM", 
+    fee: "Rp 150.000", 
+    company: "PT Bensin Habis Dorong", 
+    icon: "layout", 
+    color: "bg-blue-100 text-blue-600",
+    tags: ["React JS", "Tailwind CSS", "Figma"],
+    deadline: "20 Mei 2026",
+    description: "Membuat landing page modern dan responsif untuk UMKM yang menjual peralatan otomotif. Desain sudah disediakan di Figma, tugas Anda adalah mengimplementasikannya ke dalam kode React.",
+    briefFile: "brief_landing_page.pdf"
+  },
+  { 
+    id: 2, 
+    title: "Edit Video Reels 30 Detik", 
+    fee: "Rp 50.000", 
+    company: "PT Rebahan Sukses Makmur", 
+    icon: "edit", 
+    color: "bg-pink-100 text-pink-600",
+    tags: ["Premiere Pro", "CapCut", "Video Editing"],
+    deadline: "15 Mei 2026",
+    description: "Mengedit raw footage menjadi video reels pendek berdurasi 30 detik untuk promosi produk bantal ergonomis. Tambahkan subtitle dinamis dan sound effect yang menarik.",
+    briefFile: "aset_video_reels.zip"
+  },
+  { 
+    id: 3, 
+    title: "Desain Logo Kedai Kopi", 
+    fee: "Rp 100.000", 
+    company: "PT Senyum Terpaksa Tbk", 
+    icon: "edit", 
+    color: "bg-orange-100 text-orange-600",
+    tags: ["Adobe Illustrator", "Logo Design", "Branding"],
+    deadline: "18 Mei 2026",
+    description: "Membuat logo minimalis untuk kedai kopi lokal bernama 'Kopi Senja'. Target pasar adalah mahasiswa dan pekerja kantoran.",
+    briefFile: "brand_guidelines_kopi.pdf"
+  },
+  { 
+    id: 4, 
+    title: "Bikin Script Presentasi", 
+    fee: "Rp 75.000", 
+    company: "PT Maju Kena Mundur Kena", 
+    icon: "book", 
+    color: "bg-green-100 text-green-600",
+    tags: ["Copywriting", "Ms. Word", "Research"],
+    deadline: "22 Mei 2026",
+    description: "Menyusun skrip presentasi berdurasi 10 menit untuk pitching ke investor. Materi mentah sudah ada, Anda hanya perlu merangkum dan membuatnya lebih persuasif.",
+    briefFile: "materi_pitching.docx"
+  },
+  { 
+    id: 5, 
+    title: "Input Data Laporan Bulanan", 
+    fee: "Rp 40.000", 
+    company: "PT Berkah Abadi", 
+    icon: "layout", 
+    color: "bg-purple-100 text-purple-600",
+    tags: ["Ms. Excel", "Data Entry", "Ketelitian"],
+    deadline: "12 Mei 2026",
+    description: "Memindahkan data penjualan dari struk fisik (hasil scan) ke dalam format Excel yang sudah disediakan. Kurang lebih ada 200 data entry.",
+    briefFile: "scan_struk_april.zip"
+  },
+  { 
+    id: 6, 
+    title: "Voice Over Video Animasi", 
+    fee: "Rp 85.000", 
+    company: "PT Kucing Oren", 
+    icon: "check", 
+    color: "bg-red-100 text-red-600",
+    tags: ["Voice Acting", "Audio Editing"],
+    deadline: "25 Mei 2026",
+    description: "Merekam suara Anda untuk mengisi narasi video animasi explainer berdurasi 2 menit. Nada suara yang diinginkan: Ceria dan profesional.",
+    briefFile: "skrip_narasi.pdf"
+  },
 ];
 
-function PekerjaanCard({ title, fee, company, icon, color }) {
+function PekerjaanCard({ job, onClick }) {
+  const { title, fee, company, icon, color, tags } = job;
   const [bgClass, textClass] = color.split(" ");
+  
   return (
-    <div className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-6 group cursor-pointer dm-card">
-
-      <div className="flex gap-5 items-center flex-1">
-        {/* Icon */}
-        <div className={`w-[70px] h-[70px] rounded-[16px] ${bgClass} ${textClass} flex items-center justify-center flex-shrink-0 shadow-sm border border-white`}>
-          <Icon name={icon} className="w-8 h-8" />
+    <div onClick={() => onClick(job)} className="bg-white rounded-[24px] p-6 shadow-sm border-[1.5px] border-gray-100 hover:shadow-lg hover:border-[#075fd4]/30 hover:-translate-y-1 transition-all duration-300 flex flex-col group cursor-pointer relative overflow-hidden">
+      
+      {/* Top Section */}
+      <div className="flex gap-5 items-start">
+        {/* Placeholder / Icon Box */}
+        <div className={`w-[85px] h-[85px] rounded-[18px] ${bgClass} ${textClass} flex items-center justify-center flex-shrink-0 shadow-[inset_0_2px_4px_rgba(255,255,255,0.6)]`}>
+          <Icon name={icon} className="w-9 h-9" />
         </div>
 
-        <div className="flex flex-col">
-          <h3 className="text-[18px] font-extrabold text-gray-800 leading-tight group-hover:text-[#075fd4] transition-colors">{title}</h3>
-
-          <div className="flex items-center gap-2 mt-1.5">
-            <span className="bg-blue-50 text-[#075fd4] px-2 py-0.5 rounded-md text-[12px] font-bold border border-blue-100">
-              {fee}
-            </span>
-            <span className="bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded-md text-[12px] font-bold border border-yellow-100 flex items-center gap-1">
-              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-              +50 XP
-            </span>
+        {/* Info */}
+        <div className="flex flex-col flex-1 pt-1">
+          <h3 className="text-[20px] font-extrabold text-gray-800 leading-tight group-hover:text-[#075fd4] transition-colors">{title}</h3>
+          
+          <div className="mt-2.5 flex items-center gap-2">
+            <span className="text-[13px] font-extrabold text-gray-500 uppercase tracking-wider">Fee:</span>
+            <span className="text-[15px] font-extrabold text-[#075fd4]">{fee}</span>
           </div>
 
-          <p className="text-[13px] font-bold text-gray-500 mt-2 flex items-center gap-1.5">
+          <p className="text-[13px] font-bold text-gray-500 mt-1 flex items-center gap-1.5">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
             {company}
           </p>
         </div>
       </div>
 
-      <button className="w-full sm:w-auto px-8 py-2.5 bg-[#f0f4f8] text-[#075fd4] font-extrabold text-[14px] rounded-full group-hover:bg-[#075fd4] group-hover:text-white transition-all shadow-sm active:scale-95 border border-[#d6e4ff] group-hover:border-[#075fd4]">
-        AMBIL
-      </button>
+      {/* Bottom Section (Tags & Button) */}
+      <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between">
+        <div className="flex flex-wrap gap-2 flex-1 pr-4">
+          {tags && tags.slice(0, 3).map((tag, idx) => (
+            <span key={idx} className="bg-gray-50 text-gray-600 px-3 py-1.5 rounded-lg text-[12px] font-bold border border-gray-200">
+              {tag}
+            </span>
+          ))}
+          {tags && tags.length > 3 && (
+             <span className="bg-gray-50 text-gray-600 px-2 py-1.5 rounded-lg text-[12px] font-bold border border-gray-200">
+             +{tags.length - 3}
+           </span>
+          )}
+        </div>
+        
+        <button className="px-7 py-2.5 bg-[#f8fafc] text-[#075fd4] font-extrabold text-[14px] rounded-xl group-hover:bg-[#075fd4] group-hover:text-white transition-all shadow-sm border border-blue-100 group-hover:border-[#075fd4] shrink-0">
+          AMBIL
+        </button>
+      </div>
+
     </div>
   );
 }
 
 function PekerjaanPanel() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [actionModal, setActionModal] = useState({ isOpen: false, mode: null, job: null });
+
+  // Dummy active job
+  const activeJob = {
+    id: 99,
+    title: "Feeds testimoni pelanggan",
+    company: "PT BintangStore",
+  };
 
   const filteredData = PEKERJAAN_DATA.filter((job) =>
     job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    job.company.toLowerCase().includes(searchQuery.toLowerCase())
+    job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (job.tags && job.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())))
   );
 
   return (
     <section className="w-full flex flex-col h-full overflow-y-auto pb-10">
+      
+      {/* Header Panel */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-b-[1.5px] border-[#d0d0d0] pb-6 mb-6 px-2">
         <h1 className="text-[34px] font-extrabold text-[#075fd4] mr-4">Micro work</h1>
+      </div>
 
-        {/* Progress Limit Indicator */}
-        <div className="hidden sm:flex flex-col gap-1 w-[200px] mr-auto">
-          <div className="flex justify-between items-center text-[11px] font-bold text-gray-500 uppercase tracking-wide">
-            <span>Batas Kerja Harian</span>
-            <span className="text-[#075fd4]">2/10</span>
+      <div className="px-2 flex flex-col gap-8">
+        
+        {/* Top Area: Active Job & Profile Card */}
+        <div className="flex flex-col xl:flex-row gap-6">
+          {/* Job Berlangsung */}
+          <div className="flex-1 bg-white border-[1.5px] border-gray-200 rounded-[24px] p-6 shadow-sm flex flex-col">
+            <h2 className="text-[18px] font-extrabold text-gray-800 mb-5 flex items-center gap-2">
+              <div className="w-7 h-7 rounded-full bg-blue-100 text-[#075fd4] flex items-center justify-center">
+                <Icon name="briefcase" className="w-4 h-4" />
+              </div>
+              Job berlangsung
+            </h2>
+            
+            <div className="flex-1 border-[1.5px] border-gray-200 rounded-[16px] flex flex-col sm:flex-row sm:items-center justify-between p-5 mt-auto bg-gray-50/50 gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-[10px] bg-orange-100 text-orange-500 flex items-center justify-center shadow-sm shrink-0">
+                  <Icon name="code" className="w-5 h-5" />
+                </div>
+                <span className="text-[16px] font-extrabold text-gray-800 leading-tight">
+                  {activeJob.title}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <button 
+                  onClick={() => setActionModal({ isOpen: true, mode: "progress", job: activeJob })}
+                  className="px-4 py-2 bg-white border border-gray-200 text-gray-700 font-extrabold text-[13px] rounded-lg shadow-sm hover:border-blue-400 hover:text-blue-600 transition-colors"
+                >
+                  Lapor Progress
+                </button>
+                <button 
+                  onClick={() => setActionModal({ isOpen: true, mode: "submit", job: activeJob })}
+                  className="px-4 py-2 bg-[#075fd4] border border-[#075fd4] text-white font-extrabold text-[13px] rounded-lg shadow-sm hover:bg-[#064ca8] transition-colors"
+                >
+                  Submit Project
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dm-progress">
-            <div className="h-full bg-[#075fd4] rounded-full" style={{ width: '20%' }} />
+
+          {/* Profile Card */}
+          <div className="w-full xl:w-[320px] bg-[#075fd4] rounded-[24px] p-6 text-white relative overflow-hidden shadow-lg flex flex-col items-center justify-center shrink-0">
+            {/* Background elements */}
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-xl" />
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-xl" />
+            
+            <div className="w-full flex justify-between items-start mb-4 relative z-10">
+              <div className="bg-white/20 px-3 py-1 rounded-md text-[13px] font-extrabold flex items-center gap-1.5 border border-white/20 backdrop-blur-md">
+                 2.000 XP
+              </div>
+              <div className="bg-white/20 px-3 py-1 rounded-md text-[13px] font-extrabold flex items-center gap-1.5 border border-white/20 backdrop-blur-md text-red-100">
+                <span className="text-red-400">🔥</span> 30
+              </div>
+            </div>
+
+            <div className="relative z-10 mt-2 mb-3">
+              <div className="w-[100px] h-[100px] rounded-full border-4 border-white/20 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.3)] bg-white relative">
+                 <img src="/avatar.jpg" alt="Profile" className="w-full h-full object-cover" />
+                 {/* Fallback pattern if image is missing */}
+                 <div className="absolute inset-0 border-[3px] border-white rounded-full bg-gradient-to-tr from-orange-300 via-pink-400 to-indigo-400 opacity-20" />
+              </div>
+            </div>
+
+            <h3 className="text-[20px] font-extrabold relative z-10 text-white drop-shadow-md">
+              Raffi Setiawan Putra
+            </h3>
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="ml-auto flex items-center bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm focus-within:border-[#075fd4] transition-colors w-full sm:w-[250px] dm-card">
-          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-          <input
-            type="text"
-            placeholder="Cari pekerjaan..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-transparent border-none outline-none ml-2 text-[14px] font-semibold text-gray-700 w-full"
-          />
+        {/* Search Bar (Middle) */}
+        <div className="flex flex-col sm:flex-row items-center gap-3">
+          <div className="flex-1 flex items-center bg-gray-100 border border-transparent rounded-[16px] px-5 py-3.5 focus-within:bg-white focus-within:border-[#075fd4] transition-all w-full">
+            <svg className="w-5 h-5 text-gray-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input
+              type="text"
+              placeholder="Cari nama projek atau tag"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-transparent border-none outline-none text-[15px] font-bold text-gray-700 w-full placeholder:text-gray-400"
+            />
+          </div>
+          <button className="w-full sm:w-[54px] h-[54px] bg-gray-400 hover:bg-gray-500 text-white rounded-[16px] flex items-center justify-center transition-colors shrink-0 shadow-sm">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+          </button>
         </div>
+
+        {/* Job Grid */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          {filteredData.length > 0 ? (
+            filteredData.map((job) => (
+              <PekerjaanCard key={job.id} job={job} onClick={setSelectedJob} />
+            ))
+          ) : (
+            <div className="col-span-1 xl:col-span-2 py-16 bg-gray-50 rounded-[24px] border border-gray-200 border-dashed text-center flex flex-col items-center justify-center">
+              <Icon name="briefcase" className="w-16 h-16 text-gray-300 mb-4" />
+              <h3 className="text-[18px] font-extrabold text-gray-600">Tidak ada pekerjaan</h3>
+              <p className="text-gray-500 font-medium mt-1">Coba gunakan kata kunci lain untuk mencari micro work.</p>
+            </div>
+          )}
+        </div>
+
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 px-2">
-        {filteredData.length > 0 ? (
-          filteredData.map((job) => (
-            <PekerjaanCard key={job.id} {...job} />
-          ))
-        ) : (
-          <div className="py-10 text-center text-gray-500 font-bold flex flex-col items-center">
-            <svg className="w-16 h-16 mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            Tidak ada pekerjaan yang ditemukan.
-          </div>
-        )}
-      </div>
+      {selectedJob && (
+        <PekerjaanDetailModal job={selectedJob} onClose={() => setSelectedJob(null)} />
+      )}
+
+      {actionModal.isOpen && (
+        <PekerjaanActionModal 
+          job={actionModal.job} 
+          mode={actionModal.mode} 
+          onClose={() => setActionModal({ isOpen: false, mode: null, job: null })} 
+        />
+      )}
     </section>
   );
 }
@@ -1219,17 +1393,22 @@ function ProfilSidebar({ setActiveTab, activePengaturanMenu, setActivePengaturan
           Privasi & Data
         </button>
 
-        {/* Saldo Menu Button */}
+        {/* Wallet Menu Button */}
         <button
-          className="flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200"
+          onClick={() => setActivePengaturanMenu('wallet')}
+          className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${activePengaturanMenu === 'wallet'
+              ? 'bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]'
+              : 'text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]'
+            }`}
         >
-          Saldo
+          <Icon name="credit-card" className={`h-7 w-7 ${activePengaturanMenu === 'wallet' ? 'text-white' : 'text-[#343434]'}`} />
+          Wallet
         </button>
       </nav>
 
       <button
         type="button"
-        onClick={() => setActiveTab("Beranda")}
+        onClick={() => { window.location.href = '/'; }}
         className="mt-auto flex h-[48px] items-center gap-5 text-[22px] font-extrabold text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200 rounded-[10px] p-2"
       >
         Logout
@@ -1314,6 +1493,87 @@ function TampilanContent({ theme, setTheme }) {
   );
 }
 
+function WalletPanel() {
+  return (
+    <div className="flex flex-col md:flex-row gap-10 mt-6 px-4">
+      {/* Saldo Card */}
+      <div className="w-full md:w-[350px] shrink-0">
+        <div className="bg-[#d4d4d4] rounded-[24px] p-8 flex flex-col justify-between h-[220px] shadow-sm relative overflow-hidden">
+          <div>
+            <span className="text-[16px] font-bold text-gray-600 flex items-baseline gap-2">
+              Rp. <span className="text-[42px] font-extrabold text-[#343434] tracking-tight">218.000,00</span>
+            </span>
+          </div>
+          <button className="w-full bg-[#343434] text-white py-3 rounded-xl font-bold text-[14px] flex items-center justify-center gap-2 hover:bg-[#202020] transition-colors shadow-sm">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            Tarik Saldo
+          </button>
+        </div>
+      </div>
+
+      {/* Riwayat */}
+      <div className="flex-1">
+        <h2 className="text-[28px] font-extrabold text-[#343434] mb-4 border-b-2 border-gray-200 pb-2">Riwayat</h2>
+        <div className="flex flex-col gap-4">
+          
+          {/* Item Riwayat 1 */}
+          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
+            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
+            <div className="flex-1 flex flex-col">
+               <div className="flex justify-between items-start">
+                  <span className="text-[20px] font-extrabold text-[#343434]">+150.000</span>
+                  <span className="text-[13px] font-bold text-gray-800">Senin, 18 Mei 2026</span>
+               </div>
+               <span className="text-[14px] font-bold text-gray-800">Uang masuk</span>
+               <span className="text-[14px] font-bold text-gray-800 mt-1">Pengirim: PT Maju Jaya</span>
+            </div>
+          </div>
+
+          {/* Item Riwayat 2 */}
+          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
+            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
+            <div className="flex-1 flex flex-col">
+               <div className="flex justify-between items-start">
+                  <span className="text-[20px] font-extrabold text-[#343434]">-50.000</span>
+                  <span className="text-[13px] font-bold text-gray-800">Sabtu, 16 Mei 2026</span>
+               </div>
+               <span className="text-[14px] font-bold text-gray-800">Uang ditarik</span>
+               <span className="text-[14px] font-bold text-gray-800 mt-1">Bank BCA</span>
+            </div>
+          </div>
+
+          {/* Item Riwayat 3 */}
+          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
+            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
+            <div className="flex-1 flex flex-col">
+               <div className="flex justify-between items-start">
+                  <span className="text-[20px] font-extrabold text-[#343434]">+75.000</span>
+                  <span className="text-[13px] font-bold text-gray-800">Rabu, 13 Mei 2026</span>
+               </div>
+               <span className="text-[14px] font-bold text-gray-800">Uang masuk</span>
+               <span className="text-[14px] font-bold text-gray-800 mt-1">Pengirim: CV Sukses Selalu</span>
+            </div>
+          </div>
+
+          {/* Item Riwayat 4 */}
+          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
+            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
+            <div className="flex-1 flex flex-col">
+               <div className="flex justify-between items-start">
+                  <span className="text-[20px] font-extrabold text-[#343434]">+43.000</span>
+                  <span className="text-[13px] font-bold text-gray-800">Minggu, 10 Mei 2026</span>
+               </div>
+               <span className="text-[14px] font-bold text-gray-800">Uang masuk</span>
+               <span className="text-[14px] font-bold text-gray-800 mt-1">Pengirim: PT Bensin</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProfilPanel({ setActiveTab, activePengaturanMenu, activePengaturanTab, theme, setTheme }) {
   return (
     <section className="w-full flex flex-col h-full overflow-y-auto pb-10">
@@ -1325,11 +1585,13 @@ function ProfilPanel({ setActiveTab, activePengaturanMenu, activePengaturanTab, 
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
         </button>
         <h1 className="text-[34px] font-extrabold text-[#075fd4] tracking-tight">
-          {activePengaturanMenu === 'profil' ? 'Profil' : activePengaturanMenu === 'tampilan' ? 'Tampilan' : 'Privasi & Data'}
+          {activePengaturanMenu === 'profil' ? 'Profil' : activePengaturanMenu === 'tampilan' ? 'Tampilan' : activePengaturanMenu === 'wallet' ? 'Wallet' : 'Privasi & Data'}
         </h1>
       </div>
 
-      {activePengaturanMenu === 'tampilan' ? (
+      {activePengaturanMenu === 'wallet' ? (
+        <WalletPanel />
+      ) : activePengaturanMenu === 'tampilan' ? (
         <TampilanContent theme={theme} setTheme={setTheme} />
       ) : activePengaturanMenu === 'profil' ? (
         activePengaturanTab === 'personalInfo' ? (
@@ -1516,11 +1778,11 @@ function ProfilPanel({ setActiveTab, activePengaturanMenu, activePengaturanTab, 
             </div>
           </div>
         )
-      ) : (
-        <div className="flex flex-1 items-center justify-center">
-          <h2 className="text-[24px] font-bold text-gray-400">Pengaturan Privasi & Data</h2>
-        </div>
-      )}
+      ) : ( 
+          <div className="flex-1 px-4 lg:px-8 pb-10">
+            <PrivasiDataContent />
+          </div>
+        )}
     </section>
   );
 }
@@ -1657,3 +1919,7 @@ export default function DashboardPage() {
     </main>
   );
 }
+
+
+
+

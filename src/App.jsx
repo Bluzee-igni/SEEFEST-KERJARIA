@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import AgeQuestionPage from "./components/onboarding/AgeQuestionPage";
 import DashboardPage from "./components/dashboard/DashboardPage";
@@ -7,6 +7,8 @@ import LandingPage from "./components/landing/LandingPage";
 import LearningInterestPage from "./components/onboarding/LearningInterestPage";
 import RoleSelectionPage from "./components/onboarding/RoleSelectionPage";
 import RegistrationPage from "./components/onboarding/RegistrationPage";
+import LoginPage from "./components/onboarding/LoginPage";
+import UMKMDashboard from "./components/dashboard/UMKMDashboard";
 import NewUserDashboard from "./components/dashboard/NewUserDashboard";
 import SplashScreen from "./components/landing/SplashScreen";
 
@@ -31,7 +33,7 @@ function App() {
           setPage("education");
         }}
         onClose={() => setPage("landing")}
-        onLogin={() => setPage("landing")}
+        onLogin={() => setPage("login")}
       />
     );
   }
@@ -46,7 +48,7 @@ function App() {
           setPage("interest");
         }}
         onClose={() => setPage("landing")}
-        onLogin={() => setPage("landing")}
+        onLogin={() => setPage("login")}
       />
     );
   }
@@ -59,7 +61,7 @@ function App() {
         education={education}
         onNext={() => setPage("register")}
         onClose={() => setPage("landing")}
-        onLogin={() => setPage("dashboard")}
+        onLogin={() => setPage("login")}
       />
     );
   }
@@ -68,14 +70,31 @@ function App() {
     return (
       <RegistrationPage
         onClose={() => setPage("landing")}
-        onLogin={() => setPage("dashboard")}
+        onLogin={() => setPage("login")}
         onRegister={() => setPage("new_dashboard")}
+      />
+    );
+  }
+
+  if (page === "login") {
+    return (
+      <LoginPage
+        onClose={() => setPage("landing")}
+        onRegister={() => setPage("role")}
+        onLoginUser={() => setPage("dashboard")}
+        onLoginUMKM={() => setPage("umkm_dashboard")}
       />
     );
   }
 
   if (page === "dashboard") {
     return <DashboardPage />;
+  }
+
+  if (page === "umkm_dashboard") {
+    return (
+      <UMKMDashboard onLogout={() => setPage("landing")} />
+    );
   }
 
   if (page === "new_dashboard") {
@@ -91,7 +110,7 @@ function App() {
     return (
       <RoleSelectionPage
         onClose={() => setPage("landing")}
-        onLogin={() => setPage("dashboard")}
+        onLogin={() => setPage("login")}
         onSelectRole={handleSelectRole}
       />
     );
@@ -116,7 +135,7 @@ function App() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <LandingPage onStartQuest={() => setPage("role")} onDaftar={() => setPage("role")} onLogin={() => setPage("dashboard")} />
+          <LandingPage onStartQuest={() => setPage("role")} onDaftar={() => setPage("role")} onLogin={() => setPage("login")} />
         </motion.div>
       )}
     </>
@@ -124,3 +143,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
