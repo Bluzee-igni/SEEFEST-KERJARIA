@@ -1,3 +1,6 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+
 const blue = "#075fd4";
 
 const jobCards = Array.from({ length: 7 }, () => ({
@@ -110,7 +113,13 @@ function FeatureRobot({ variant = "plain" }) {
 
 function FeatureStep({ title, children, variant, reverse }) {
   return (
-    <section className="grid items-center gap-6 md:grid-cols-2 md:gap-12">
+    <motion.section 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="grid items-center gap-6 md:grid-cols-2 md:gap-12"
+    >
       <div
         className={`flex justify-center ${
           reverse ? "md:order-2 md:justify-start" : "md:justify-end"
@@ -126,17 +135,24 @@ function FeatureStep({ title, children, variant, reverse }) {
         <h2 className="text-[42px] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#075fd4] sm:text-[56px] lg:text-[64px]">
           {title}
         </h2>
-        <p className="mt-3 text-[13px] font-semibold leading-[1.2] tracking-[0px] text-[#20242a]">
+        <p className="mt-3 text-[13px] font-semibold leading-[1.2] tracking-[0px] text-[#20242a] lg:text-[15px]">
           {children}
         </p>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
 function TestimonialCard({ quote, name, role, avatar }) {
   return (
-    <article className="flex min-h-[145px] flex-col justify-between rounded-[7px] border border-[#075fd4] bg-white px-5 py-5 shadow-[0_5px_0_0_#075fd4]">
+    <motion.article 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ y: -5 }}
+      className="flex min-h-[145px] flex-col justify-between rounded-[7px] border border-[#075fd4] bg-white px-5 py-5 shadow-[0_5px_0_0_#075fd4]"
+    >
       <p className="text-[15px] font-semibold leading-[1.02] tracking-[0px] text-[#20242a]">
         &ldquo;{quote}&rdquo;
       </p>
@@ -148,15 +164,15 @@ function TestimonialCard({ quote, name, role, avatar }) {
           {name.charAt(0)}
         </div>
         <div>
-          <h3 className="text-[8px] font-semibold leading-none tracking-[0px] text-[#20242a]">
+          <h3 className="text-[8px] font-semibold leading-none tracking-[0px] text-[#20242a] sm:text-[10px]">
             {name}
           </h3>
-          <p className="mt-1 text-[6px] font-semibold leading-none tracking-[0px] text-[#4b5563]">
+          <p className="mt-1 text-[6px] font-semibold leading-none tracking-[0px] text-[#4b5563] sm:text-[8px]">
             {role}
           </p>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -285,9 +301,16 @@ function FooterRobot() {
   );
 }
 
-function JobCard({ title, description, isMore }) {
+function JobCard({ title, description, isMore, index = 0 }) {
   return (
-    <article className="flex min-h-[118px] items-start gap-4 rounded-[10px] border-2 border-[#075fd4] bg-white px-6 py-5 shadow-[0_10px_0_-3px_#075fd4,0_12px_18px_rgba(7,95,212,0.16)]">
+    <motion.article 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      whileHover={{ y: -5, boxShadow: "0 15px 0 -3px #075fd4, 0 20px 25px rgba(7,95,212,0.2)" }}
+      className="flex min-h-[118px] items-start gap-4 rounded-[10px] border-2 border-[#075fd4] bg-white px-6 py-5 shadow-[0_10px_0_-3px_#075fd4,0_12px_18px_rgba(7,95,212,0.16)] cursor-pointer"
+    >
       {!isMore && (
         <span className="mt-1 h-[18px] w-[18px] shrink-0 rounded-full bg-[#67c7ff]" />
       )}
@@ -301,11 +324,11 @@ function JobCard({ title, description, isMore }) {
           </p>
         )}
       </div>
-    </article>
+    </motion.article>
   );
 }
 
-export default function LandingPage({ onStartQuest }) {
+export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
   return (
     <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] tracking-[0px] text-[#20242a]">
       <style>
@@ -313,7 +336,7 @@ export default function LandingPage({ onStartQuest }) {
           html, body, #root { margin: 0; min-height: 100%; background: #ffffff; }
           body { overflow-x: hidden; }`}
       </style>
-      <header className="bg-white shadow-[0_3px_12px_rgba(0,0,0,0.14)]">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-[0_3px_12px_rgba(0,0,0,0.08)] transition-shadow">
         <nav className="flex h-[60px] w-full items-center justify-between px-5 sm:px-8 lg:px-10">
           <a href="#" className="flex items-center gap-1.5" aria-label="KerjaRia">
             <LogoMark />
@@ -323,47 +346,68 @@ export default function LandingPage({ onStartQuest }) {
           </a>
 
           <div className="flex items-center gap-3">
-            <button className="h-[34px] min-w-[80px] rounded-[6px] bg-[#075fd4] px-5 text-[8px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)]">
+            <button 
+              onClick={onLogin}
+              className="h-[34px] min-w-[80px] rounded-[6px] bg-[#075fd4] px-5 text-[8px] font-semibold uppercase tracking-[0px] text-white shadow-[0_8px_18px_rgba(7,95,212,0.35)] hover:bg-[#064ca8] transition-colors"
+            >
               Login
             </button>
-            <button className="h-[34px] min-w-[80px] rounded-[6px] border border-[#075fd4] px-5 text-[8px] font-semibold uppercase tracking-[0px] text-[#075fd4]">
+            <button 
+              onClick={onDaftar}
+              className="h-[34px] min-w-[80px] rounded-[6px] border border-[#075fd4] px-5 text-[8px] font-semibold uppercase tracking-[0px] text-[#075fd4] hover:bg-[#075fd4] hover:text-white transition-colors"
+            >
               Daftar
             </button>
           </div>
         </nav>
       </header>
 
-      <section className="mx-auto grid w-full max-w-[980px] grid-cols-1 items-center gap-8 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[1.08fr_0.92fr] md:gap-14 md:pb-14 md:pt-7 lg:px-0">
-        <div className="flex justify-center md:justify-end">
+      <section className="mx-auto grid w-full max-w-[1100px] grid-cols-1 items-center gap-8 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[1fr_1fr] md:gap-14 md:pb-14 md:pt-7 lg:px-0">
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex justify-center md:justify-end"
+        >
           <Mascot />
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col items-center text-center md:items-start md:pt-12 md:text-left">
-          <h1 className="max-w-[492px] text-[38px] font-extrabold leading-[1.18] tracking-[-0.02em] text-[#20242a] sm:text-[46px] lg:text-[40px]">
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="flex flex-col items-center text-center md:items-start md:pt-12 md:text-left"
+        >
+          <h1 className="max-w-[492px] text-[38px] font-extrabold leading-[1.18] tracking-[-0.02em] text-[#20242a] sm:text-[46px] lg:text-[54px] lg:max-w-[600px] xl:text-[60px]">
             Mulai Pengalaman
             <span className="block text-[#075fd4]">Kerja Pertamamu</span>
             dari Sekarang.
           </h1>
 
-          <div className="mt-16 flex w-full max-w-[230px] flex-col gap-3 md:ml-8">
+          <div className="mt-16 flex w-full max-w-[230px] flex-col gap-3 md:ml-8 lg:max-w-[280px]">
             <button
               type="button"
               onClick={onStartQuest}
-              className="h-[38px] rounded-[7px] bg-[#075fd4] text-[9px] font-semibold tracking-[0px] text-white shadow-[0_8px_16px_rgba(7,95,212,0.36)]"
+              className="h-[38px] lg:h-[46px] rounded-[7px] bg-[#075fd4] text-[9px] lg:text-[12px] font-semibold tracking-[0px] text-white shadow-[0_8px_16px_rgba(7,95,212,0.36)] hover:bg-[#064ca8] hover:shadow-[0_10px_20px_rgba(7,95,212,0.4)] transition-all"
             >
               Mulai Quest Sekarang
             </button>
-            <button className="h-[32px] rounded-[6px] border border-[#075fd4] text-[9px] font-semibold tracking-[0px] text-[#075fd4]">
+            <button className="h-[32px] lg:h-[40px] rounded-[6px] border border-[#075fd4] text-[9px] lg:text-[12px] font-semibold tracking-[0px] text-[#075fd4] hover:bg-blue-50 transition-colors">
               Sudah Punya Akun
             </button>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="mx-auto w-full max-w-[1060px] px-5 pb-28 pt-20 sm:px-8 md:pt-20 lg:px-0">
-        <h2 className="mx-auto max-w-[680px] text-center text-[46px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#075fd4] sm:text-[64px] lg:text-[72px]">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-[680px] lg:max-w-[800px] text-center text-[46px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[#075fd4] sm:text-[64px] lg:text-[72px]"
+        >
           Berbagai Bidang Pekerjaan
-        </h2>
+        </motion.h2>
 
         <div className="mt-24 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {jobCards.map((card, index) => (
@@ -371,9 +415,10 @@ export default function LandingPage({ onStartQuest }) {
               key={`${card.title}-${index}`}
               title={card.title}
               description={card.description}
+              index={index}
             />
           ))}
-          <JobCard title="+24 Bidang lainnya" isMore />
+          <JobCard title="+24 Bidang lainnya" isMore index={7} />
         </div>
 
         <div className="mt-14 flex justify-center">
@@ -466,20 +511,29 @@ export default function LandingPage({ onStartQuest }) {
         </div>
       </section>
 
-      <section className="relative min-h-[500px] overflow-hidden bg-white px-5 pt-[110px] sm:min-h-[560px] sm:px-8 sm:pt-[125px]">
+      <section className="relative min-h-[550px] overflow-hidden bg-white px-5 pt-[110px] sm:min-h-[650px] lg:min-h-[750px] sm:px-8 sm:pt-[125px]">
         <div className="relative z-20 mx-auto flex w-full max-w-[720px] flex-col items-center text-center">
-          <h2 className="max-w-[560px] text-[38px] font-semibold leading-[1.08] tracking-[0px] text-[#075fd4] sm:text-[56px]">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-[560px] lg:max-w-[700px] text-[38px] font-extrabold tracking-[-0.02em] leading-[1.08] text-[#075fd4] sm:text-[56px] lg:text-[64px]"
+          >
             Banyak Pengalaman
             <span className="block">bersama KerjaRia</span>
-          </h2>
+          </motion.h2>
 
-          <button
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
             type="button"
             onClick={onStartQuest}
-            className="mt-10 h-[42px] w-full max-w-[235px] rounded-[7px] bg-[#075fd4] text-[10px] font-semibold tracking-[0px] text-white shadow-[0_9px_15px_rgba(7,95,212,0.36)]"
+            className="mt-10 h-[42px] lg:h-[50px] w-full max-w-[235px] lg:max-w-[280px] rounded-[7px] bg-[#075fd4] text-[10px] lg:text-[13px] font-semibold tracking-[0px] text-white shadow-[0_9px_15px_rgba(7,95,212,0.36)] hover:bg-[#064ca8] hover:scale-105 transition-all"
           >
             Mulai Quest Sekarang
-          </button>
+          </motion.button>
         </div>
 
         <svg

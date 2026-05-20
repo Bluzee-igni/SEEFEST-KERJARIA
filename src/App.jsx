@@ -1,13 +1,18 @@
 import { useState } from "react";
-import AgeQuestionPage from "./components/AgeQuestionPage";
-import DashboardPage from "./components/DashboardPage";
-import EducationQuestionPage from "./components/EducationQuestionPage";
-import LandingPage from "./components/LandingPage";
-import LearningInterestPage from "./components/LearningInterestPage";
-import RoleSelectionPage from "./components/RoleSelectionPage";
+import { AnimatePresence, motion } from "framer-motion";
+import AgeQuestionPage from "./components/onboarding/AgeQuestionPage";
+import DashboardPage from "./components/dashboard/DashboardPage";
+import EducationQuestionPage from "./components/onboarding/EducationQuestionPage";
+import LandingPage from "./components/landing/LandingPage";
+import LearningInterestPage from "./components/onboarding/LearningInterestPage";
+import RoleSelectionPage from "./components/onboarding/RoleSelectionPage";
+import RegistrationPage from "./components/onboarding/RegistrationPage";
+import NewUserDashboard from "./components/dashboard/NewUserDashboard";
+import SplashScreen from "./components/landing/SplashScreen";
 
 function App() {
   const [page, setPage] = useState("landing");
+  const [showSplash, setShowSplash] = useState(true);
   const [role, setRole] = useState("");
   const [age, setAge] = useState("");
   const [education, setEducation] = useState("");
@@ -52,9 +57,19 @@ function App() {
         role={role}
         age={age}
         education={education}
-        onNext={() => setPage("dashboard")}
+        onNext={() => setPage("register")}
         onClose={() => setPage("landing")}
-        onLogin={() => setPage("landing")}
+        onLogin={() => setPage("dashboard")}
+      />
+    );
+  }
+
+  if (page === "register") {
+    return (
+      <RegistrationPage
+        onClose={() => setPage("landing")}
+        onLogin={() => setPage("dashboard")}
+        onRegister={() => setPage("new_dashboard")}
       />
     );
   }
@@ -63,17 +78,49 @@ function App() {
     return <DashboardPage />;
   }
 
+  if (page === "new_dashboard") {
+    return (
+      <NewUserDashboard
+        onBuat={() => setPage("register")}
+        onMasuk={() => setPage("dashboard")}
+      />
+    );
+  }
+
   if (page === "role") {
     return (
       <RoleSelectionPage
         onClose={() => setPage("landing")}
-        onLogin={() => setPage("landing")}
+        onLogin={() => setPage("dashboard")}
         onSelectRole={handleSelectRole}
       />
     );
   }
 
-  return <LandingPage onStartQuest={() => setPage("role")} />;
+  return (
+    <>
+      <AnimatePresence>
+        {showSplash && (
+          <motion.div
+            key="splash-wrapper"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <SplashScreen onFinish={() => setShowSplash(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {!showSplash && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <LandingPage onStartQuest={() => setPage("role")} onDaftar={() => setPage("role")} onLogin={() => setPage("dashboard")} />
+        </motion.div>
+      )}
+    </>
+  );
 }
 
 export default App;

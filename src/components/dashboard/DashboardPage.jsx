@@ -144,37 +144,35 @@ function Sidebar({ activeTab, setActiveTab }) {
         {menuItems.map((item) => {
           const isActive = item.label === activeTab;
           return (
-          <button
-            type="button"
-            key={item.label}
-            onClick={() => setActiveTab(item.label)}
-            className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[27px] font-extrabold tracking-[-0.02em] transition-all duration-200 ${
-              isActive
-                ? "bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8,0_14px_28px_rgba(7,95,212,0.22)] scale-[1.02]"
-                : "bg-white text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]"
-            }`}
-          >
-            <Icon
-              name={item.icon}
-              className={`h-7 w-7 ${
-                item.label === "Event"
-                  ? "text-[#c63cff]"
-                  : item.label === "Level"
-                    ? "text-[#ffb000]"
-                    : item.label === "Pekerjaan"
-                      ? "text-[#b55151]"
-                      : item.label === "Sosial"
-                        ? "text-[#707070]"
-                        : item.label === "Pesan"
-                          ? "text-[#444]"
-                          : isActive
-                            ? "text-white"
-                            : "text-[#075fd4]"
-              }`}
-            />
-            {item.label}
-          </button>
-        );
+            <button
+              type="button"
+              key={item.label}
+              onClick={() => setActiveTab(item.label)}
+              className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[27px] font-extrabold tracking-[-0.02em] transition-all duration-200 ${isActive
+                  ? "bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8,0_14px_28px_rgba(7,95,212,0.22)] scale-[1.02]"
+                  : "bg-white text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]"
+                }`}
+            >
+              <Icon
+                name={item.icon}
+                className={`h-7 w-7 ${item.label === "Event"
+                    ? "text-[#c63cff]"
+                    : item.label === "Level"
+                      ? "text-[#ffb000]"
+                      : item.label === "Pekerjaan"
+                        ? "text-[#b55151]"
+                        : item.label === "Sosial"
+                          ? "text-[#707070]"
+                          : item.label === "Pesan"
+                            ? "text-[#444]"
+                            : isActive
+                              ? "text-white"
+                              : "text-[#075fd4]"
+                  }`}
+              />
+              {item.label}
+            </button>
+          );
         })}
       </nav>
 
@@ -242,9 +240,8 @@ function MissionPanel() {
         {missions.map((mission, index) => (
           <div
             key={mission.title}
-            className={`flex min-h-[76px] items-center gap-5 px-6 py-4 ${
-              index > 0 ? "border-t-[1.5px] border-[#e0e0e0]" : ""
-            }`}
+            className={`flex min-h-[76px] items-center gap-5 px-6 py-4 ${index > 0 ? "border-t-[1.5px] border-[#e0e0e0]" : ""
+              }`}
           >
             <span
               className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${mission.color}`}
@@ -272,13 +269,13 @@ function MissionPanel() {
 
 function EventBannerKemerdekaan() {
   return (
-    <div 
+    <div
       className="relative h-[220px] w-full overflow-hidden rounded-[24px] bg-cover bg-left-bottom"
       style={{ backgroundImage: "url('/event-kemerdekaan-bg.svg')" }}
     >
       <div className="relative z-10 h-full px-10 flex flex-col justify-center items-start">
         <h3 className="max-w-[450px] text-[30px] font-extrabold leading-[1.15] tracking-[-0.02em] text-black">
-          Selamat Hari Kemerdekaan<br/>Indonesia ke- 81
+          Selamat Hari Kemerdekaan<br />Indonesia ke- 81
         </h3>
         <p className="mt-1.5 text-[14px] font-extrabold text-black">
           15 Agustus – 22 Agustus 2026
@@ -286,8 +283,8 @@ function EventBannerKemerdekaan() {
         <button className="mt-4 flex items-center gap-2 rounded-full bg-[#075fd4] px-5 py-2 text-[14px] font-extrabold text-white shadow-[0_4px_10px_rgba(7,95,212,0.3)] hover:bg-[#064ca8] hover:scale-105 transition-all duration-200">
           Pergi
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7" cy="7" r="7" fill="white"/>
-            <circle cx="7" cy="7" r="3.5" fill="#075fd4"/>
+            <circle cx="7" cy="7" r="7" fill="white" />
+            <circle cx="7" cy="7" r="3.5" fill="#075fd4" />
           </svg>
         </button>
       </div>
@@ -298,13 +295,13 @@ function EventBannerKemerdekaan() {
 
 function EventBannerPramuka() {
   return (
-    <div 
+    <div
       className="relative h-[220px] w-full overflow-hidden rounded-[24px] bg-cover bg-left-bottom"
       style={{ backgroundImage: "url('/event-pramuka-bg.svg')" }}
     >
       <div className="relative z-10 h-full px-10 flex flex-col justify-center items-start">
         <h3 className="max-w-[450px] text-[30px] font-extrabold leading-[1.15] tracking-[-0.02em] text-white">
-          Selamat Hari Ulang Tahun Pramuka<br/>Indonesia ke-65
+          Selamat Hari Ulang Tahun Pramuka<br />Indonesia ke-65
         </h3>
         <p className="mt-1.5 text-[14px] font-extrabold text-white">
           15 Agustus – 22 Agustus 2026
@@ -312,8 +309,8 @@ function EventBannerPramuka() {
         <button className="mt-4 flex items-center gap-2 rounded-full bg-white px-5 py-2 text-[14px] font-extrabold text-[#343434] shadow-[0_4px_10px_rgba(0,0,0,0.15)] hover:bg-gray-100 hover:scale-105 transition-all duration-200">
           Pergi
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7" cy="7" r="7" fill="#343434"/>
-            <circle cx="7" cy="7" r="3.5" fill="white"/>
+            <circle cx="7" cy="7" r="7" fill="#343434" />
+            <circle cx="7" cy="7" r="3.5" fill="white" />
           </svg>
         </button>
       </div>
@@ -336,123 +333,123 @@ function EventBanner() {
 function ProfilePanel({ setActiveTab }) {
   return (
     <aside className="hidden w-[318px] shrink-0 rounded-[20px] bg-[#075fd4] text-white xl:flex flex-col shadow-lg overflow-visible relative">
-      
+
       {/* Top Blue section with avatar */}
-      <div 
+      <div
         className="bg-[#075fd4] rounded-t-[20px] px-6 pt-6 pb-24 relative flex flex-col items-center cursor-pointer hover:bg-[#0654c0] transition-colors group"
         onClick={() => setActiveTab("Pengaturan")}
       >
-         <div className="w-full flex justify-between items-center text-[16px] font-extrabold text-white">
-            <span className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded-[8px] bg-white text-[#075fd4] flex items-center justify-center shadow-sm">17</span>
-              2.000 XP
-            </span>
-            <span className="flex flex-col items-center gap-1 bg-white/20 px-2.5 py-1 rounded-md text-[13px] border border-white/30 relative">
-               <div className="flex items-center gap-1">
-                 <span className="text-red-400">🔥</span> 30
-               </div>
-               <span className="text-[8px] absolute -bottom-3 text-white/80">+50XP</span>
-            </span>
-         </div>
-         
-         <div className="w-[140px] h-[140px] rounded-full border-[6px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ff8f8f] mt-8 shadow-md relative z-20 overflow-hidden group-hover:scale-105 transition-transform">
-             <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
-         </div>
-         <div className="w-7 h-7 bg-white text-[#075fd4] rounded-md absolute bottom-[100px] right-[70px] z-30 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-100">
-            <Icon name="edit" className="w-4 h-4" />
-         </div>
-         
-         <h2 className="text-[22px] font-extrabold mt-6 text-center leading-tight">Raffi Setiawan Putra</h2>
-         
-         <div className="mt-2.5 bg-[#d97706] px-5 py-1.5 rounded-full text-white text-[13px] font-extrabold shadow-sm relative z-20 flex items-center">
-             <div className="w-3 h-3 rounded-full bg-[#fcd34d] mr-2"></div>
-             Junior Explorer
-         </div>
+        <div className="w-full flex justify-between items-center text-[16px] font-extrabold text-white">
+          <span className="flex items-center gap-2">
+            <span className="w-8 h-8 rounded-[8px] bg-white text-[#075fd4] flex items-center justify-center shadow-sm">17</span>
+            2.000 XP
+          </span>
+          <span className="flex flex-col items-center gap-1 bg-white/20 px-2.5 py-1 rounded-md text-[13px] border border-white/30 relative">
+            <div className="flex items-center gap-1">
+              <span className="text-red-400">🔥</span> 30
+            </div>
+            <span className="text-[8px] absolute -bottom-3 text-white/80">+50XP</span>
+          </span>
+        </div>
+
+        <div className="w-[140px] h-[140px] rounded-full border-[6px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ff8f8f] mt-8 shadow-md relative z-20 overflow-hidden group-hover:scale-105 transition-transform">
+          <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
+        </div>
+        <div className="w-7 h-7 bg-white text-[#075fd4] rounded-md absolute bottom-[100px] right-[70px] z-30 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-100">
+          <Icon name="edit" className="w-4 h-4" />
+        </div>
+
+        <h2 className="text-[22px] font-extrabold mt-6 text-center leading-tight">Raffi Setiawan Putra</h2>
+
+        <div className="mt-2.5 bg-[#d97706] px-5 py-1.5 rounded-full text-white text-[13px] font-extrabold shadow-sm relative z-20 flex items-center">
+          <div className="w-3 h-3 rounded-full bg-[#fcd34d] mr-2"></div>
+          Junior Explorer
+        </div>
       </div>
-      
+
       {/* Stats Ticket Layer */}
       <div className="absolute top-[350px] left-4 right-4 flex justify-between z-30 pointer-events-none">
-         {/* 3 Ticket shapes */}
-         {[
+        {/* 3 Ticket shapes */}
+        {[
           ["book", "12", "Misi\nTersedia", "#075fd4"],
           ["check", "9", "Misi\nSelesai", "#00c943"],
           ["star", "3", "Skill\nDipelajari", "#d50bb9"],
-         ].map(([icon, count, label, color]) => (
-           <div key={label} className="w-[85px] bg-white rounded-t-[12px] rounded-b-[4px] shadow-md flex flex-col items-center pt-3 pb-5 relative pointer-events-auto dm-card">
-             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white shadow-inner mb-1" style={{ backgroundColor: color }}>
-                <Icon name={icon} className="w-5 h-5" />
-             </div>
-             <strong className="text-black text-[22px] font-extrabold mt-1 leading-none">{count}</strong>
-             <span className="text-gray-500 text-[10px] font-bold text-center leading-tight mt-1">{label}</span>
-             {/* Ticket triangle bottom */}
-             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rotate-45 shadow-[3px_3px_5px_rgba(0,0,0,0.05)] -z-10 rounded-sm"></div>
-           </div>
-         ))}
+        ].map(([icon, count, label, color]) => (
+          <div key={label} className="w-[85px] bg-white rounded-t-[12px] rounded-b-[4px] shadow-md flex flex-col items-center pt-3 pb-5 relative pointer-events-auto dm-card">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center text-white shadow-inner mb-1" style={{ backgroundColor: color }}>
+              <Icon name={icon} className="w-5 h-5" />
+            </div>
+            <strong className="text-black text-[22px] font-extrabold mt-1 leading-none">{count}</strong>
+            <span className="text-gray-500 text-[10px] font-bold text-center leading-tight mt-1">{label}</span>
+            {/* Ticket triangle bottom */}
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rotate-45 shadow-[3px_3px_5px_rgba(0,0,0,0.05)] -z-10 rounded-sm"></div>
+          </div>
+        ))}
       </div>
 
       {/* White container bottom */}
       <div className="bg-white rounded-[20px] px-5 pt-[90px] pb-6 flex-1 flex flex-col gap-5 shadow-[-2px_-5px_15px_rgba(0,0,0,0.05)] relative z-10 -mt-10 dm-card">
-         {/* Misi Harian */}
-         <div className="border-[1.5px] border-[#e0e0e0] rounded-[16px] p-4 bg-[#f8fbff] shadow-sm flex flex-col dm-card">
-            <div className="flex items-center gap-2 text-[12px] font-bold text-[#075fd4]">
-               <Icon name="book" className="w-4 h-4" />
-               Misi harian
+        {/* Misi Harian */}
+        <div className="border-[1.5px] border-[#e0e0e0] rounded-[16px] p-4 bg-[#f8fbff] shadow-sm flex flex-col dm-card">
+          <div className="flex items-center gap-2 text-[12px] font-bold text-[#075fd4]">
+            <Icon name="book" className="w-4 h-4" />
+            Misi harian
+          </div>
+          <div className="flex items-center mt-3 gap-3">
+            <div className="w-11 h-11 rounded-[10px] bg-[#075fd4] text-white flex items-center justify-center shadow-md">
+              <Icon name="book" className="w-6 h-6" />
             </div>
-            <div className="flex items-center mt-3 gap-3">
-               <div className="w-11 h-11 rounded-[10px] bg-[#075fd4] text-white flex items-center justify-center shadow-md">
-                 <Icon name="book" className="w-6 h-6" />
-               </div>
-               <div className="flex-1 flex flex-col">
-                  <div className="flex justify-between items-end text-[13px] font-extrabold text-black">
-                     <span>Selesaikan satu misi</span>
-                     <span className="text-[12px]">1/1</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-[#dbeafe] rounded-full mt-2 overflow-hidden">
-                     <div className="h-full bg-[#075fd4] rounded-full w-full"></div>
-                  </div>
-                  <span className="self-end text-[9px] font-bold text-gray-400 mt-1">+50XP</span>
-               </div>
+            <div className="flex-1 flex flex-col">
+              <div className="flex justify-between items-end text-[13px] font-extrabold text-black">
+                <span>Selesaikan satu misi</span>
+                <span className="text-[12px]">1/1</span>
+              </div>
+              <div className="w-full h-1.5 bg-[#dbeafe] rounded-full mt-2 overflow-hidden">
+                <div className="h-full bg-[#075fd4] rounded-full w-full"></div>
+              </div>
+              <span className="self-end text-[9px] font-bold text-gray-400 mt-1">+50XP</span>
             </div>
-         </div>
+          </div>
+        </div>
 
-         {/* Progress Skill */}
-         <div className="flex flex-col mt-2 px-1">
-            <h3 className="text-[15px] font-extrabold text-black mb-4">Progress Skill</h3>
-            
-            <div className="flex items-center gap-4 mb-4">
-               <div className="w-10 h-10 rounded-[8px] bg-[#f3e8ff] text-[#a855f7] flex items-center justify-center shadow-sm border border-[#e9d5ff]">
-                 <Icon name="layout" className="w-5 h-5" />
-               </div>
-               <div className="flex-1 flex flex-col justify-center mt-1">
-                  <div className="flex justify-between text-[12px] font-extrabold text-black mb-1.5">
-                     <span>UI/UX</span>
-                     <span className="text-gray-500">25%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-[#f3e8ff] rounded-full overflow-hidden">
-                     <div className="h-full bg-[#a855f7] rounded-full w-1/4"></div>
-                  </div>
-               </div>
-            </div>
+        {/* Progress Skill */}
+        <div className="flex flex-col mt-2 px-1">
+          <h3 className="text-[15px] font-extrabold text-black mb-4">Progress Skill</h3>
 
-            <div className="flex items-center gap-4">
-               <div className="w-10 h-10 rounded-[8px] bg-[#ffedd5] text-[#f97316] flex items-center justify-center shadow-sm border border-[#fed7aa]">
-                 <Icon name="code" className="w-5 h-5" />
-               </div>
-               <div className="flex-1 flex flex-col justify-center mt-1">
-                  <div className="flex justify-between text-[12px] font-extrabold text-black mb-1.5">
-                     <span>Frontend Dev</span>
-                     <span className="text-gray-500">95%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-[#ffedd5] rounded-full overflow-hidden">
-                     <div className="h-full bg-[#f97316] rounded-full w-[95%]"></div>
-                  </div>
-               </div>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-10 h-10 rounded-[8px] bg-[#f3e8ff] text-[#a855f7] flex items-center justify-center shadow-sm border border-[#e9d5ff]">
+              <Icon name="layout" className="w-5 h-5" />
             </div>
-         </div>
-         
-         <div className="w-full flex justify-center mt-auto pt-6 pb-2">
-           <Icon name="robotHead" className="w-20 h-20 text-[#075fd4] opacity-90" />
-         </div>
+            <div className="flex-1 flex flex-col justify-center mt-1">
+              <div className="flex justify-between text-[12px] font-extrabold text-black mb-1.5">
+                <span>UI/UX</span>
+                <span className="text-gray-500">25%</span>
+              </div>
+              <div className="w-full h-1.5 bg-[#f3e8ff] rounded-full overflow-hidden">
+                <div className="h-full bg-[#a855f7] rounded-full w-1/4"></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-[8px] bg-[#ffedd5] text-[#f97316] flex items-center justify-center shadow-sm border border-[#fed7aa]">
+              <Icon name="code" className="w-5 h-5" />
+            </div>
+            <div className="flex-1 flex flex-col justify-center mt-1">
+              <div className="flex justify-between text-[12px] font-extrabold text-black mb-1.5">
+                <span>Frontend Dev</span>
+                <span className="text-gray-500">95%</span>
+              </div>
+              <div className="w-full h-1.5 bg-[#ffedd5] rounded-full overflow-hidden">
+                <div className="h-full bg-[#f97316] rounded-full w-[95%]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full flex justify-center mt-auto pt-6 pb-2">
+          <Icon name="robotHead" className="w-20 h-20 text-[#075fd4] opacity-90" />
+        </div>
       </div>
     </aside>
   );
@@ -505,7 +502,7 @@ function FriendRequestCard({ name, role, level, image }) {
           </div>
         </div>
       </div>
-      
+
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-3">
           <button className="grid h-10 w-10 place-items-center rounded-full bg-white shadow-md text-red-500 hover:bg-red-50 hover:scale-110 transition-all duration-200">
@@ -546,12 +543,12 @@ function SosialPanel() {
 
   return (
     <section className="w-full">
-      <div className="mb-6 flex items-center border-b-[3px] border-[#e0e0e0] pb-0 dm-card" style={{background:'transparent', border:'none', borderBottom:'3px solid #e0e0e0'}}>
+      <div className="mb-6 flex items-center border-b-[3px] border-[#e0e0e0] pb-0 dm-card" style={{ background: 'transparent', border: 'none', borderBottom: '3px solid #e0e0e0' }}>
         <h1 className="text-[34px] font-extrabold text-[#075fd4] flex-1 pb-4 pl-4">
           Sosial
         </h1>
         <div className="flex items-end gap-16 pr-40">
-          <div 
+          <div
             className="relative pb-4 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={() => setActiveSosialTab("users")}
           >
@@ -560,7 +557,7 @@ function SosialPanel() {
               <div className="absolute bottom-[-1.5px] left-1/2 h-1 w-14 -translate-x-1/2 rounded-t-lg bg-[#075fd4]" />
             )}
           </div>
-          <div 
+          <div
             className="relative pb-4 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={() => setActiveSosialTab("userPlus")}
           >
@@ -582,13 +579,13 @@ function SosialPanel() {
 
       {activeSosialTab === "userPlus" && (
         <div className="mt-8 flex flex-col pl-4 pr-10">
-          <input 
-            type="text" 
-            placeholder="Cari nama pengguna..." 
+          <input
+            type="text"
+            placeholder="Cari nama pengguna..."
             className="w-full rounded-full border-[1.5px] border-[#075fd4] px-6 py-4 text-[16px] font-bold text-[#343434] outline-none placeholder:text-[#075fd4] placeholder:font-bold"
           />
           <div className="my-8 w-full h-[1px] bg-[#d0d0d0]" />
-          
+
           <h2 className="mb-4 text-[18px] font-extrabold text-[#4a4a4a]">
             Friend request
           </h2>
@@ -667,11 +664,10 @@ function PesanPanel() {
                 <div
                   key={msg.id}
                   onClick={() => setActiveMessageId(msg.id)}
-                  className={`cursor-pointer rounded-[8px] p-5 flex items-center gap-4 transition-all duration-200 hover:scale-[1.02] ${
-                    isActive
+                  className={`cursor-pointer rounded-[8px] p-5 flex items-center gap-4 transition-all duration-200 hover:scale-[1.02] ${isActive
                       ? "bg-[#075fd4] text-white shadow-md"
                       : "bg-white text-[#343434] border-[2px] border-[#e0e0e0] shadow-[0_5px_0_#d0d0d0] dm-card"
-                  }`}
+                    }`}
                 >
                   <Icon
                     name="mail"
@@ -761,7 +757,7 @@ function AvatarBorderReward({ type, name, className }) {
   let gradientClass = "";
   let textColor = "";
   let accents = null;
-  
+
   if (type === "bronze") {
     gradientClass = "from-[#d4a373] via-[#b5835a] to-[#d4a373]";
     textColor = "text-[#b5835a]";
@@ -799,17 +795,17 @@ function AvatarBorderReward({ type, name, className }) {
   return (
     <div className={`bg-white rounded-[12px] p-2 shadow-xl border border-gray-100 flex flex-col items-center justify-center gap-1.5 dm-card ${className}`}>
       <span className={`${textColor} font-extrabold text-[12px] leading-none text-center px-1`}>{name}</span>
-      
+
       {/* The Avatar Frame Container */}
       <div className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-md">
         {/* Gradient Border Background (Spinning) */}
         <div className="absolute inset-0 rounded-full overflow-hidden">
           <div className={`absolute -inset-[50%] bg-gradient-to-br ${gradientClass} animate-spin`} style={{ animationDuration: type === 'diamond' ? '2.5s' : '4s' }} />
         </div>
-        
+
         {/* The inner hole for the avatar */}
         <div className="relative w-[52px] h-[52px] rounded-full bg-[#f8f9fa] z-10 flex items-center justify-center overflow-hidden border-[2px] border-white">
-           <img src="/asah-skill-robot.svg" className="w-[85%] h-[85%] object-contain translate-y-0.5" alt="Avatar" />
+          <img src="/asah-skill-robot.svg" className="w-[85%] h-[85%] object-contain translate-y-0.5" alt="Avatar" />
         </div>
 
         {/* Accents */}
@@ -836,7 +832,7 @@ function RabbitHexagon({ level, isWhite, className, textClassName }) {
 function LevelPanel() {
   return (
     <section className="w-full h-full flex flex-col relative overflow-y-auto overflow-x-hidden pt-4 pb-20">
-      
+
       {/* Top Card */}
       <div className="w-full max-w-[800px] bg-[#075fd4] rounded-[24px] px-12 py-10 flex items-center shadow-lg mx-auto z-10 relative mt-4">
         <RabbitHexagon level="17" isWhite={true} className="w-[120px] h-[155px] flex-shrink-0" textClassName="text-[52px]" />
@@ -928,37 +924,37 @@ function MisiCard({ title, subtitle, progress, totalSteps, completedSteps, icon,
       <div className="flex gap-5 items-center">
         {/* Icon */}
         <div className={`w-[70px] h-[70px] rounded-[16px] ${bgClass} ${textClass} flex items-center justify-center flex-shrink-0`}>
-           <Icon name={icon} className="w-8 h-8" />
+          <Icon name={icon} className="w-8 h-8" />
         </div>
-        
+
         {/* Info */}
         <div className="flex flex-col flex-1">
           <h3 className="text-[20px] font-extrabold text-gray-800 leading-tight">{title}</h3>
           <p className="text-[13px] text-gray-500 font-bold mt-1 line-clamp-1">{subtitle}</p>
-          
+
           {/* Sub-steps */}
           <div className="flex items-center mt-2.5">
-             {Array.from({ length: totalSteps }).map((_, i) => (
-               <React.Fragment key={i}>
-                 <div className={`w-3.5 h-3.5 rounded-full border-[2px] ${i < completedSteps ? 'bg-gray-500 border-gray-500' : 'bg-white border-gray-300'} z-10 flex-shrink-0`} />
-                 {i < totalSteps - 1 && (
-                   <div className={`w-4 h-[2px] ${i < completedSteps - 1 ? 'bg-gray-500' : 'bg-gray-200'} z-0 flex-shrink-0 -mx-[1px]`} />
-                 )}
-               </React.Fragment>
-             ))}
+            {Array.from({ length: totalSteps }).map((_, i) => (
+              <React.Fragment key={i}>
+                <div className={`w-3.5 h-3.5 rounded-full border-[2px] ${i < completedSteps ? 'bg-gray-500 border-gray-500' : 'bg-white border-gray-300'} z-10 flex-shrink-0`} />
+                {i < totalSteps - 1 && (
+                  <div className={`w-4 h-[2px] ${i < completedSteps - 1 ? 'bg-gray-500' : 'bg-gray-200'} z-0 flex-shrink-0 -mx-[1px]`} />
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
-      
+
       {/* Bottom Section */}
       <div className="flex flex-col gap-2 mt-auto">
-         <div className="flex justify-between items-center text-[13px] font-bold">
-            <span className="text-gray-500">Progress Misi</span>
-            <span className="text-gray-800">{progress}% Complete</span>
-         </div>
-         <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
-            <div className="h-full bg-gray-600 rounded-full transition-all duration-1000" style={{ width: `${progress}%` }} />
-         </div>
+        <div className="flex justify-between items-center text-[13px] font-bold">
+          <span className="text-gray-500">Progress Misi</span>
+          <span className="text-gray-800">{progress}% Complete</span>
+        </div>
+        <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+          <div className="h-full bg-gray-600 rounded-full transition-all duration-1000" style={{ width: `${progress}%` }} />
+        </div>
       </div>
     </div>
   );
@@ -975,7 +971,7 @@ function MisiPanel() {
     } else if (activeFilter === "Selesai") {
       if (misi.progress !== 100) return false;
     }
-    
+
     // 2. Filter by search query
     if (searchQuery.trim() !== "") {
       const query = searchQuery.toLowerCase();
@@ -983,7 +979,7 @@ function MisiPanel() {
         return false;
       }
     }
-    
+
     return true;
   });
 
@@ -991,21 +987,21 @@ function MisiPanel() {
     <section className="w-full flex flex-col h-full overflow-y-auto pb-10">
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-b-[1.5px] border-[#d0d0d0] pb-6 mb-6 px-2">
         <h1 className="text-[34px] font-extrabold text-[#075fd4] mr-4">Misi</h1>
-        
+
         <div className="flex flex-wrap items-center gap-3">
-          <button 
+          <button
             onClick={() => setActiveFilter("Semua Misi")}
             className={`px-5 py-2 rounded-full text-[14px] font-bold shadow-sm transition-transform hover:scale-105 ${activeFilter === 'Semua Misi' ? 'bg-[#075fd4] text-white shadow-md' : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50 dm-card'}`}
           >
             Semua Misi
           </button>
-          <button 
+          <button
             onClick={() => setActiveFilter("Sedang Berjalan")}
             className={`px-5 py-2 rounded-full text-[14px] font-bold shadow-sm transition-transform hover:scale-105 ${activeFilter === 'Sedang Berjalan' ? 'bg-[#075fd4] text-white shadow-md' : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50 dm-card'}`}
           >
             Sedang Berjalan
           </button>
-          <button 
+          <button
             onClick={() => setActiveFilter("Selesai")}
             className={`px-5 py-2 rounded-full text-[14px] font-bold shadow-sm transition-transform hover:scale-105 ${activeFilter === 'Selesai' ? 'bg-[#075fd4] text-white shadow-md' : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50 dm-card'}`}
           >
@@ -1014,14 +1010,14 @@ function MisiPanel() {
         </div>
 
         <div className="ml-auto flex items-center bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm focus-within:border-[#075fd4] transition-colors w-full sm:w-auto dm-card">
-           <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-           <input 
-             type="text" 
-             placeholder="Cari misi..." 
-             value={searchQuery}
-             onChange={(e) => setSearchQuery(e.target.value)}
-             className="bg-transparent border-none outline-none ml-2 text-[14px] font-semibold text-gray-700 w-full sm:w-[150px]" 
-           />
+          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input
+            type="text"
+            placeholder="Cari misi..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="bg-transparent border-none outline-none ml-2 text-[14px] font-semibold text-gray-700 w-full sm:w-[150px]"
+          />
         </div>
       </div>
 
@@ -1033,8 +1029,8 @@ function MisiPanel() {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-20 text-gray-400">
-           <svg className="w-16 h-16 mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-           <p className="text-[16px] font-bold">Misi tidak ditemukan.</p>
+          <svg className="w-16 h-16 mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <p className="text-[16px] font-bold">Misi tidak ditemukan.</p>
         </div>
       )}
     </section>
@@ -1056,24 +1052,24 @@ function PekerjaanCard({ title, fee, company, icon, color }) {
   const [bgClass, textClass] = color.split(" ");
   return (
     <div className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-6 group cursor-pointer dm-card">
-      
+
       <div className="flex gap-5 items-center flex-1">
         {/* Icon */}
         <div className={`w-[70px] h-[70px] rounded-[16px] ${bgClass} ${textClass} flex items-center justify-center flex-shrink-0 shadow-sm border border-white`}>
-           <Icon name={icon} className="w-8 h-8" />
+          <Icon name={icon} className="w-8 h-8" />
         </div>
-        
+
         <div className="flex flex-col">
           <h3 className="text-[18px] font-extrabold text-gray-800 leading-tight group-hover:text-[#075fd4] transition-colors">{title}</h3>
-          
+
           <div className="flex items-center gap-2 mt-1.5">
-             <span className="bg-blue-50 text-[#075fd4] px-2 py-0.5 rounded-md text-[12px] font-bold border border-blue-100">
-               {fee}
-             </span>
-             <span className="bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded-md text-[12px] font-bold border border-yellow-100 flex items-center gap-1">
-               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-               +50 XP
-             </span>
+            <span className="bg-blue-50 text-[#075fd4] px-2 py-0.5 rounded-md text-[12px] font-bold border border-blue-100">
+              {fee}
+            </span>
+            <span className="bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded-md text-[12px] font-bold border border-yellow-100 flex items-center gap-1">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              +50 XP
+            </span>
           </div>
 
           <p className="text-[13px] font-bold text-gray-500 mt-2 flex items-center gap-1.5">
@@ -1092,9 +1088,9 @@ function PekerjaanCard({ title, fee, company, icon, color }) {
 
 function PekerjaanPanel() {
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   const filteredData = PEKERJAAN_DATA.filter((job) =>
-    job.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     job.company.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -1102,28 +1098,28 @@ function PekerjaanPanel() {
     <section className="w-full flex flex-col h-full overflow-y-auto pb-10">
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-b-[1.5px] border-[#d0d0d0] pb-6 mb-6 px-2">
         <h1 className="text-[34px] font-extrabold text-[#075fd4] mr-4">Micro work</h1>
-        
+
         {/* Progress Limit Indicator */}
         <div className="hidden sm:flex flex-col gap-1 w-[200px] mr-auto">
-           <div className="flex justify-between items-center text-[11px] font-bold text-gray-500 uppercase tracking-wide">
-              <span>Batas Kerja Harian</span>
-              <span className="text-[#075fd4]">2/10</span>
-           </div>
-           <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dm-progress">
-              <div className="h-full bg-[#075fd4] rounded-full" style={{ width: '20%' }} />
-           </div>
+          <div className="flex justify-between items-center text-[11px] font-bold text-gray-500 uppercase tracking-wide">
+            <span>Batas Kerja Harian</span>
+            <span className="text-[#075fd4]">2/10</span>
+          </div>
+          <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dm-progress">
+            <div className="h-full bg-[#075fd4] rounded-full" style={{ width: '20%' }} />
+          </div>
         </div>
 
         {/* Search Bar */}
         <div className="ml-auto flex items-center bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm focus-within:border-[#075fd4] transition-colors w-full sm:w-[250px] dm-card">
-           <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-           <input 
-             type="text" 
-             placeholder="Cari pekerjaan..." 
-             value={searchQuery}
-             onChange={(e) => setSearchQuery(e.target.value)}
-             className="bg-transparent border-none outline-none ml-2 text-[14px] font-semibold text-gray-700 w-full" 
-           />
+          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input
+            type="text"
+            placeholder="Cari pekerjaan..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="bg-transparent border-none outline-none ml-2 text-[14px] font-semibold text-gray-700 w-full"
+          />
         </div>
       </div>
 
@@ -1162,68 +1158,64 @@ function ProfilSidebar({ setActiveTab, activePengaturanMenu, setActivePengaturan
         <button
           type="button"
           onClick={() => setActivePengaturanMenu('profil')}
-          className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${
-            activePengaturanMenu === 'profil' 
-              ? 'bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]' 
+          className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${activePengaturanMenu === 'profil'
+              ? 'bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]'
               : 'text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]'
-          }`}
+            }`}
         >
           <Icon name="user" className={`h-7 w-7 ${activePengaturanMenu === 'profil' ? 'text-white' : 'text-[#343434]'}`} />
           Profil
         </button>
 
         {/* Profil Sub Menu */}
-        <div 
-          className={`flex flex-col ml-12 border-l-[3px] border-[#d0d0d0] pl-5 relative overflow-hidden transition-all duration-300 ease-in-out ${
-            activePengaturanMenu === 'profil' ? 'max-h-[120px] opacity-100 py-2 mt-1 mb-2 gap-5' : 'max-h-0 opacity-0 py-0 mt-0 gap-0'
-          }`}
+        <div
+          className={`flex flex-col ml-12 border-l-[3px] border-[#d0d0d0] pl-5 relative overflow-hidden transition-all duration-300 ease-in-out ${activePengaturanMenu === 'profil' ? 'max-h-[120px] opacity-100 py-2 mt-1 mb-2 gap-5' : 'max-h-0 opacity-0 py-0 mt-0 gap-0'
+            }`}
         >
-           <div 
-             className="absolute -left-[3px] w-[6px] h-6 rounded-r-lg bg-[#075fd4] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
-             style={{ top: activePengaturanTab === 'personalInfo' ? '10px' : '58px' }}
-           />
-           <button 
-             onClick={() => setActivePengaturanTab('personalInfo')}
-             className={`text-[18px] font-extrabold text-left transition-colors duration-200 ${activePengaturanTab === 'personalInfo' ? 'text-black' : 'text-gray-500 hover:text-black'}`}
-           >
-             Personal info
-           </button>
-           <button 
-             onClick={() => setActivePengaturanTab('profileDisplay')}
-             className={`text-[18px] font-extrabold text-left transition-colors duration-200 ${activePengaturanTab === 'profileDisplay' ? 'text-black' : 'text-gray-500 hover:text-black'}`}
-           >
-             Profile Display
-           </button>
+          <div
+            className="absolute -left-[3px] w-[6px] h-6 rounded-r-lg bg-[#075fd4] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+            style={{ top: activePengaturanTab === 'personalInfo' ? '10px' : '58px' }}
+          />
+          <button
+            onClick={() => setActivePengaturanTab('personalInfo')}
+            className={`text-[18px] font-extrabold text-left transition-colors duration-200 ${activePengaturanTab === 'personalInfo' ? 'text-black' : 'text-gray-500 hover:text-black'}`}
+          >
+            Personal info
+          </button>
+          <button
+            onClick={() => setActivePengaturanTab('profileDisplay')}
+            className={`text-[18px] font-extrabold text-left transition-colors duration-200 ${activePengaturanTab === 'profileDisplay' ? 'text-black' : 'text-gray-500 hover:text-black'}`}
+          >
+            Profile Display
+          </button>
         </div>
-        
+
         {/* Tampilan Menu Button */}
-        <button 
+        <button
           onClick={() => setActivePengaturanMenu('tampilan')}
-          className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${
-            activePengaturanMenu === 'tampilan'
-              ? 'bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]' 
+          className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${activePengaturanMenu === 'tampilan'
+              ? 'bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]'
               : 'text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]'
-          }`}
+            }`}
         >
           <Icon name="palette" className={`h-7 w-7 ${activePengaturanMenu === 'tampilan' ? 'text-white' : 'text-[#343434]'}`} />
           Tampilan
         </button>
 
         {/* Privasi Menu Button */}
-        <button 
+        <button
           onClick={() => setActivePengaturanMenu('privasi')}
-          className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${
-            activePengaturanMenu === 'privasi'
-              ? 'bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]' 
+          className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${activePengaturanMenu === 'privasi'
+              ? 'bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]'
               : 'text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]'
-          }`}
+            }`}
         >
           <Icon name="lock" className={`h-7 w-7 ${activePengaturanMenu === 'privasi' ? 'text-white' : 'text-[#343434]'}`} />
           Privasi & Data
         </button>
 
         {/* Saldo Menu Button */}
-        <button 
+        <button
           className="flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200"
         >
           Saldo
@@ -1264,26 +1256,25 @@ function TampilanContent({ theme, setTheme }) {
   return (
     <div className="px-2">
       <h2 className="text-[32px] font-extrabold dark:text-white text-[#343434] mb-10">Tema</h2>
-      
+
       <div className="flex justify-between items-center">
         <span className="text-[18px] font-bold text-gray-400 dark:text-gray-400">Mode tampilan</span>
-        
+
         <div className="relative" ref={dropdownRef}>
           {/* Dropdown Trigger */}
           <button
             onClick={() => setOpen(!open)}
-            className={`flex items-center gap-3 px-5 py-3 rounded-xl border-[2px] font-bold text-[15px] min-w-[200px] justify-between transition-all duration-200 shadow-sm ${
-              open 
-                ? 'border-[#075fd4] shadow-[0_0_0_3px_rgba(7,95,212,0.15)]' 
+            className={`flex items-center gap-3 px-5 py-3 rounded-xl border-[2px] font-bold text-[15px] min-w-[200px] justify-between transition-all duration-200 shadow-sm ${open
+                ? 'border-[#075fd4] shadow-[0_0_0_3px_rgba(7,95,212,0.15)]'
                 : 'border-gray-200 dark:border-gray-600 hover:border-[#075fd4]'
-            } bg-white dark:bg-[#1e293b] dark:text-gray-200 text-[#343434]`}
+              } bg-white dark:bg-[#1e293b] dark:text-gray-200 text-[#343434]`}
           >
             <span className="flex items-center gap-2.5">
               <span className="text-[18px]">{selected.icon}</span>
               <span>{selected.label}</span>
             </span>
-            <svg 
-              className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} 
+            <svg
+              className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
               fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -1291,18 +1282,16 @@ function TampilanContent({ theme, setTheme }) {
           </button>
 
           {/* Dropdown Menu */}
-          <div className={`absolute right-0 top-[calc(100%+8px)] min-w-[200px] bg-white dark:bg-[#1e293b] rounded-xl border-[2px] border-gray-100 dark:border-gray-600 shadow-[0_12px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50 transition-all duration-200 origin-top ${
-            open ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
-          }`}>
+          <div className={`absolute right-0 top-[calc(100%+8px)] min-w-[200px] bg-white dark:bg-[#1e293b] rounded-xl border-[2px] border-gray-100 dark:border-gray-600 shadow-[0_12px_40px_rgba(0,0,0,0.12)] overflow-hidden z-50 transition-all duration-200 origin-top ${open ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
+            }`}>
             {themeOptions.map((opt) => (
               <button
                 key={opt.value}
                 onClick={() => { setTheme(opt.value); setOpen(false); }}
-                className={`w-full flex items-center gap-3 px-5 py-3.5 text-left text-[15px] font-bold transition-all duration-150 ${
-                  theme === opt.value 
-                    ? 'bg-[#075fd4] text-white' 
+                className={`w-full flex items-center gap-3 px-5 py-3.5 text-left text-[15px] font-bold transition-all duration-150 ${theme === opt.value
+                    ? 'bg-[#075fd4] text-white'
                     : 'text-[#343434] dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-[#334155]'
-                }`}
+                  }`}
               >
                 <span className="text-[18px]">{opt.icon}</span>
                 <span>{opt.label}</span>
@@ -1324,9 +1313,9 @@ function ProfilPanel({ setActiveTab, activePengaturanMenu, activePengaturanTab, 
   return (
     <section className="w-full flex flex-col h-full overflow-y-auto pb-10">
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-b-[1.5px] border-[#d0d0d0] pb-4 mb-8 px-2">
-        <button 
-           onClick={() => setActiveTab("Beranda")}
-           className="w-10 h-10 rounded-xl bg-blue-100 text-[#075fd4] flex items-center justify-center hover:bg-[#075fd4] hover:text-white transition-all shadow-sm"
+        <button
+          onClick={() => setActiveTab("Beranda")}
+          className="w-10 h-10 rounded-xl bg-blue-100 text-[#075fd4] flex items-center justify-center hover:bg-[#075fd4] hover:text-white transition-all shadow-sm"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
         </button>
@@ -1339,194 +1328,194 @@ function ProfilPanel({ setActiveTab, activePengaturanMenu, activePengaturanTab, 
         <TampilanContent theme={theme} setTheme={setTheme} />
       ) : activePengaturanMenu === 'profil' ? (
         activePengaturanTab === 'personalInfo' ? (
-        <div className="flex flex-col xl:flex-row gap-8 items-start px-2">
-          {/* Left Card: Profile Display */}
-          <div className="w-full xl:w-[320px] bg-[#075fd4] rounded-[24px] overflow-hidden flex flex-col relative shadow-lg shrink-0">
-             <div className="bg-white px-4 pb-[72px] pt-4 rounded-b-[24px] relative z-10 shadow-[0_4px_10px_rgba(0,0,0,0.05)]">
-               <div className="flex justify-between items-center text-[16px] font-extrabold text-[#075fd4]">
+          <div className="flex flex-col xl:flex-row gap-8 items-start px-2">
+            {/* Left Card: Profile Display */}
+            <div className="w-full xl:w-[320px] bg-[#075fd4] rounded-[24px] overflow-hidden flex flex-col relative shadow-lg shrink-0">
+              <div className="bg-white px-4 pb-[72px] pt-4 rounded-b-[24px] relative z-10 shadow-[0_4px_10px_rgba(0,0,0,0.05)]">
+                <div className="flex justify-between items-center text-[16px] font-extrabold text-[#075fd4]">
                   <div className="flex items-center gap-2">
-                     <div className="w-8 h-8 rounded-lg bg-[#075fd4] text-white flex items-center justify-center shadow-inner text-[14px]">17</div>
-                     <span>2.000 XP</span>
+                    <div className="w-8 h-8 rounded-lg bg-[#075fd4] text-white flex items-center justify-center shadow-inner text-[14px]">17</div>
+                    <span>2.000 XP</span>
                   </div>
-               </div>
-               <div className="absolute left-1/2 -bottom-20 -translate-x-1/2 w-[160px] h-[160px] rounded-full border-[8px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ffb1b1] overflow-hidden shadow-lg z-20">
-                   <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
-               </div>
-             </div>
+                </div>
+                <div className="absolute left-1/2 -bottom-20 -translate-x-1/2 w-[160px] h-[160px] rounded-full border-[8px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ffb1b1] overflow-hidden shadow-lg z-20">
+                  <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
+                </div>
+              </div>
 
-             <div className="pt-28 pb-8 px-6 flex flex-col items-center relative z-0">
+              <div className="pt-28 pb-8 px-6 flex flex-col items-center relative z-0">
                 <div className="flex gap-2 w-full mt-2">
-                   <button className="flex-1 bg-white/10 hover:bg-white/20 border-[1.5px] border-white/40 text-white py-[7px] rounded-[10px] text-[13px] font-extrabold transition-colors">Ubah Avatar</button>
-                   <button className="flex-1 bg-white/10 hover:bg-white/20 border-[1.5px] border-white/40 text-white py-[7px] rounded-[10px] text-[13px] font-extrabold transition-colors">Ubah Bingkai</button>
+                  <button className="flex-1 bg-white/10 hover:bg-white/20 border-[1.5px] border-white/40 text-white py-[7px] rounded-[10px] text-[13px] font-extrabold transition-colors">Ubah Avatar</button>
+                  <button className="flex-1 bg-white/10 hover:bg-white/20 border-[1.5px] border-white/40 text-white py-[7px] rounded-[10px] text-[13px] font-extrabold transition-colors">Ubah Bingkai</button>
                 </div>
 
                 <h2 className="text-[25px] font-extrabold text-white text-center leading-tight mt-7">Raffi Setiawan Putra</h2>
-                
+
                 <div className="mt-3 flex items-center gap-2 bg-[#e08900] px-4 py-1.5 rounded-full text-white text-[13px] font-extrabold shadow-sm relative">
-                   <div className="w-3 h-3 rounded-full bg-[#fcd34d] absolute left-3"></div>
-                   <span className="ml-4">Junior Explorer</span>
-                   <Icon name="edit" className="w-4 h-4 ml-1 opacity-80 cursor-pointer hover:opacity-100" />
+                  <div className="w-3 h-3 rounded-full bg-[#fcd34d] absolute left-3"></div>
+                  <span className="ml-4">Junior Explorer</span>
+                  <Icon name="edit" className="w-4 h-4 ml-1 opacity-80 cursor-pointer hover:opacity-100" />
                 </div>
 
                 <Icon name="robotHead" className="w-28 h-28 text-white mt-12 mb-4" />
-             </div>
-          </div>
+              </div>
+            </div>
 
-          {/* Right Card: Form */}
-          <div className="flex-1 w-full bg-white border-[1.5px] border-[#d0d0d0] rounded-[24px] p-8 shadow-sm">
-             <h2 className="text-[22px] font-extrabold text-[#4a4a4a] mb-6">Personal Information</h2>
-             
-             <div className="flex flex-col gap-6">
+            {/* Right Card: Form */}
+            <div className="flex-1 w-full bg-white border-[1.5px] border-[#d0d0d0] rounded-[24px] p-8 shadow-sm">
+              <h2 className="text-[22px] font-extrabold text-[#4a4a4a] mb-6">Personal Information</h2>
+
+              <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                   <label className="text-[16px] font-bold text-[#4a4a4a]">Nama Pengguna</label>
-                   <input type="text" value="Nathcaw" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
+                  <label className="text-[16px] font-bold text-[#4a4a4a]">Nama Pengguna</label>
+                  <input type="text" value="Nathcaw" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
                 </div>
-                
+
                 <div className="flex flex-col gap-2">
-                   <label className="text-[16px] font-bold text-[#4a4a4a]">Nama Lengkap</label>
-                   <input type="text" value="Raffi Setiawan Putra" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
+                  <label className="text-[16px] font-bold text-[#4a4a4a]">Nama Lengkap</label>
+                  <input type="text" value="Raffi Setiawan Putra" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
                 </div>
-                
+
                 <div className="flex flex-col gap-2 mt-2">
-                   <label className="text-[16px] font-bold text-[#4a4a4a]">Jenis Kelamin</label>
-                   <div className="flex gap-8 items-center mt-1">
-                      <label className="flex items-center gap-3 cursor-pointer">
-                        <div className="w-5 h-5 rounded-full border-2 border-[#075fd4] flex items-center justify-center">
-                           <div className="w-2.5 h-2.5 rounded-full bg-[#075fd4]"></div>
-                        </div>
-                        <span className="text-[15px] font-bold text-gray-800">Laki-laki</span>
-                      </label>
-                      <label className="flex items-center gap-3 cursor-pointer">
-                        <div className="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center">
-                        </div>
-                        <span className="text-[15px] font-bold text-gray-800">Perempuan</span>
-                      </label>
-                   </div>
+                  <label className="text-[16px] font-bold text-[#4a4a4a]">Jenis Kelamin</label>
+                  <div className="flex gap-8 items-center mt-1">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <div className="w-5 h-5 rounded-full border-2 border-[#075fd4] flex items-center justify-center">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#075fd4]"></div>
+                      </div>
+                      <span className="text-[15px] font-bold text-gray-800">Laki-laki</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <div className="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                      </div>
+                      <span className="text-[15px] font-bold text-gray-800">Perempuan</span>
+                    </label>
+                  </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-6 mt-2">
-                   <div className="flex flex-col gap-2 flex-1">
-                      <label className="text-[16px] font-bold text-[#4a4a4a]">Tanggal Lahir</label>
-                      <input type="text" value="9 Oktober 2008" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
-                   </div>
-                   <div className="flex flex-col gap-2 flex-1">
-                      <label className="text-[16px] font-bold text-[#4a4a4a]">No HP</label>
-                      <input type="text" value="+62 812-3022-0688" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
-                   </div>
+                  <div className="flex flex-col gap-2 flex-1">
+                    <label className="text-[16px] font-bold text-[#4a4a4a]">Tanggal Lahir</label>
+                    <input type="text" value="9 Oktober 2008" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
+                  </div>
+                  <div className="flex flex-col gap-2 flex-1">
+                    <label className="text-[16px] font-bold text-[#4a4a4a]">No HP</label>
+                    <input type="text" value="+62 812-3022-0688" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-2 mt-2">
-                   <label className="text-[16px] font-bold text-[#4a4a4a]">Domisili</label>
-                   <input type="text" value="Sidoarjo, Jawa Timur" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
+                  <label className="text-[16px] font-bold text-[#4a4a4a]">Domisili</label>
+                  <input type="text" value="Sidoarjo, Jawa Timur" readOnly className="w-full border-[1.5px] border-[#075fd4] rounded-full px-6 py-3 text-[16px] font-bold text-gray-800 outline-none" />
                 </div>
-             </div>
+              </div>
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="bg-[#075fd4] rounded-[24px] p-3 flex flex-col xl:flex-row gap-3 min-h-[600px] mx-2 shadow-lg">
-           {/* Left Blue Container */}
-           <div className="w-full xl:w-[280px] flex flex-col items-center pt-8 pb-6 relative shrink-0 rounded-l-[20px]">
-             <div className="w-full flex justify-between items-center text-[16px] font-extrabold text-white px-6">
+        ) : (
+          <div className="bg-[#075fd4] rounded-[24px] p-3 flex flex-col xl:flex-row gap-3 min-h-[600px] mx-2 shadow-lg">
+            {/* Left Blue Container */}
+            <div className="w-full xl:w-[280px] flex flex-col items-center pt-8 pb-6 relative shrink-0 rounded-l-[20px]">
+              <div className="w-full flex justify-between items-center text-[16px] font-extrabold text-white px-6">
                 <span className="flex items-center gap-2">
-                   <div className="w-8 h-8 rounded-[8px] bg-white text-[#075fd4] flex items-center justify-center shadow-sm text-[14px]">17</div>
-                   <span>2.000 XP</span>
+                  <div className="w-8 h-8 rounded-[8px] bg-white text-[#075fd4] flex items-center justify-center shadow-sm text-[14px]">17</div>
+                  <span>2.000 XP</span>
                 </span>
-             </div>
+              </div>
 
-             <div className="w-[140px] h-[140px] rounded-full border-[6px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ff8f8f] mt-8 shadow-md relative overflow-hidden">
-                 <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
-             </div>
+              <div className="w-[140px] h-[140px] rounded-full border-[6px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ff8f8f] mt-8 shadow-md relative overflow-hidden">
+                <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
+              </div>
 
-             <div className="flex gap-2 w-full px-6 mt-6">
-                 <button className="flex-1 bg-white/20 hover:bg-white/30 border border-white/40 text-white py-1.5 rounded-[8px] text-[12px] font-bold transition-colors">Ubah Avatar</button>
-                 <button className="flex-1 bg-white/20 hover:bg-white/30 border border-white/40 text-white py-1.5 rounded-[8px] text-[12px] font-bold transition-colors">Ubah Bingkai</button>
-             </div>
+              <div className="flex gap-2 w-full px-6 mt-6">
+                <button className="flex-1 bg-white/20 hover:bg-white/30 border border-white/40 text-white py-1.5 rounded-[8px] text-[12px] font-bold transition-colors">Ubah Avatar</button>
+                <button className="flex-1 bg-white/20 hover:bg-white/30 border border-white/40 text-white py-1.5 rounded-[8px] text-[12px] font-bold transition-colors">Ubah Bingkai</button>
+              </div>
 
-             <h2 className="text-[22px] font-extrabold text-white text-center leading-tight mt-6">Raffi Setiawan Putra</h2>
-             
-             <div className="mt-3 flex items-center gap-2 bg-[#d97706] px-4 py-1.5 rounded-full text-white text-[13px] font-extrabold shadow-sm relative">
-                 <div className="w-3 h-3 rounded-full bg-[#fcd34d] absolute left-3"></div>
-                 <span className="ml-4">Junior Explorer</span>
-                 <Icon name="edit" className="w-4 h-4 ml-1 opacity-80 cursor-pointer hover:opacity-100" />
-             </div>
+              <h2 className="text-[22px] font-extrabold text-white text-center leading-tight mt-6">Raffi Setiawan Putra</h2>
 
-             <div className="flex gap-6 mt-8 w-full justify-center px-4 relative z-10">
+              <div className="mt-3 flex items-center gap-2 bg-[#d97706] px-4 py-1.5 rounded-full text-white text-[13px] font-extrabold shadow-sm relative">
+                <div className="w-3 h-3 rounded-full bg-[#fcd34d] absolute left-3"></div>
+                <span className="ml-4">Junior Explorer</span>
+                <Icon name="edit" className="w-4 h-4 ml-1 opacity-80 cursor-pointer hover:opacity-100" />
+              </div>
+
+              <div className="flex gap-6 mt-8 w-full justify-center px-4 relative z-10">
                 <div className="w-[80px] bg-white rounded-t-[12px] rounded-b-[4px] shadow-md flex flex-col items-center pt-3 pb-5 relative">
                   <div className="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-inner mb-1 bg-[#00c943]">
-                     <Icon name="check" className="w-5 h-5" />
+                    <Icon name="check" className="w-5 h-5" />
                   </div>
                   <strong className="text-black text-[22px] font-extrabold mt-1 leading-none">9</strong>
-                  <span className="text-gray-500 text-[10px] font-bold text-center leading-tight mt-1">Job<br/>Selesai</span>
+                  <span className="text-gray-500 text-[10px] font-bold text-center leading-tight mt-1">Job<br />Selesai</span>
                   <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 bg-white rotate-45 -z-10 rounded-sm shadow-[3px_3px_5px_rgba(0,0,0,0.05)]"></div>
                 </div>
 
                 <div className="w-[80px] bg-white rounded-t-[12px] rounded-b-[4px] shadow-md flex flex-col items-center pt-3 pb-5 relative">
                   <div className="w-9 h-9 rounded-full flex items-center justify-center text-white shadow-inner mb-1 bg-[#d50bb9]">
-                     <Icon name="star" className="w-5 h-5" />
+                    <Icon name="star" className="w-5 h-5" />
                   </div>
                   <strong className="text-black text-[22px] font-extrabold mt-1 leading-none">3</strong>
-                  <span className="text-gray-500 text-[10px] font-bold text-center leading-tight mt-1">Skill<br/>Dipelajari</span>
+                  <span className="text-gray-500 text-[10px] font-bold text-center leading-tight mt-1">Skill<br />Dipelajari</span>
                   <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-5 h-5 bg-white rotate-45 -z-10 rounded-sm shadow-[3px_3px_5px_rgba(0,0,0,0.05)]"></div>
                 </div>
-             </div>
+              </div>
 
-             <Icon name="robotHead" className="w-24 h-24 text-white mt-auto pt-6 opacity-90" />
-           </div>
+              <Icon name="robotHead" className="w-24 h-24 text-white mt-auto pt-6 opacity-90" />
+            </div>
 
-           {/* Right White Container */}
-           <div className="flex-1 bg-white rounded-[20px] p-8 flex flex-col shadow-sm">
+            {/* Right White Container */}
+            <div className="flex-1 bg-white rounded-[20px] p-8 flex flex-col shadow-sm">
               <h2 className="text-[22px] font-extrabold text-[#4a4a4a] mb-6">Profile Display</h2>
-              
+
               <h3 className="text-[17px] font-bold text-[#4a4a4a] mb-3">Skill yang dipelajari</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                 {[1,2,3,4,5,6,7,8].map((i) => (
-                    <div key={i} className="bg-white border-[1.5px] border-gray-200 rounded-[8px] p-2 flex items-center gap-3 relative shadow-sm hover:border-[#075fd4] transition-colors cursor-pointer">
-                       <div className="w-9 h-9 rounded-md bg-orange-100 text-orange-500 flex items-center justify-center shrink-0">
-                         <Icon name="code" className="w-5 h-5" />
-                       </div>
-                       <div className="text-[12px] font-extrabold text-black leading-tight">
-                         Frontend<br/>Developer
-                       </div>
-                       <div className="absolute top-1.5 right-1.5 text-[#5e239d]">
-                         <svg width="10" height="14" viewBox="0 0 10 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                           <path d="M1 13L5 9L9 13V2C9 1.44772 8.55228 1 8 1H2C1.44772 1 1 1.44772 1 2V13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                         </svg>
-                       </div>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                  <div key={i} className="bg-white border-[1.5px] border-gray-200 rounded-[8px] p-2 flex items-center gap-3 relative shadow-sm hover:border-[#075fd4] transition-colors cursor-pointer">
+                    <div className="w-9 h-9 rounded-md bg-orange-100 text-orange-500 flex items-center justify-center shrink-0">
+                      <Icon name="code" className="w-5 h-5" />
                     </div>
-                 ))}
+                    <div className="text-[12px] font-extrabold text-black leading-tight">
+                      Frontend<br />Developer
+                    </div>
+                    <div className="absolute top-1.5 right-1.5 text-[#5e239d]">
+                      <svg width="10" height="14" viewBox="0 0 10 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13L5 9L9 13V2C9 1.44772 8.55228 1 8 1H2C1.44772 1 1 1.44772 1 2V13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  </div>
+                ))}
               </div>
               <div className="flex justify-end mt-2">
-                 <button className="text-[13px] text-gray-500 hover:text-black font-bold">Show all</button>
+                <button className="text-[13px] text-gray-500 hover:text-black font-bold">Show all</button>
               </div>
 
               <h3 className="text-[17px] font-bold text-[#4a4a4a] mb-3 mt-6">Hasil pekerjaan sebelumnya</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                 {[1,2,3,4].map((i) => (
-                    <div key={i} className="bg-white border-[1.5px] border-gray-200 rounded-[8px] p-4 relative shadow-sm hover:border-[#075fd4] transition-colors cursor-pointer">
-                       <h4 className="text-[16px] font-extrabold text-black">Frontend Developer</h4>
-                       <p className="text-[13px] text-gray-500 font-bold mb-3 mt-0.5">Landing page web umkm</p>
-                       <div className="flex items-center gap-1.5 text-[13px] font-extrabold text-gray-700">
-                          <span className="text-yellow-400 text-[14px]">⭐</span> 4/5
-                       </div>
-                       <div className="absolute top-4 right-4 text-[#5e239d]">
-                         <svg width="12" height="16" viewBox="0 0 10 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                           <path d="M1 13L5 9L9 13V2C9 1.44772 8.55228 1 8 1H2C1.44772 1 1 1.44772 1 2V13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                         </svg>
-                       </div>
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="bg-white border-[1.5px] border-gray-200 rounded-[8px] p-4 relative shadow-sm hover:border-[#075fd4] transition-colors cursor-pointer">
+                    <h4 className="text-[16px] font-extrabold text-black">Frontend Developer</h4>
+                    <p className="text-[13px] text-gray-500 font-bold mb-3 mt-0.5">Landing page web umkm</p>
+                    <div className="flex items-center gap-1.5 text-[13px] font-extrabold text-gray-700">
+                      <span className="text-yellow-400 text-[14px]">⭐</span> 4/5
                     </div>
-                 ))}
+                    <div className="absolute top-4 right-4 text-[#5e239d]">
+                      <svg width="12" height="16" viewBox="0 0 10 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13L5 9L9 13V2C9 1.44772 8.55228 1 8 1H2C1.44772 1 1 1.44772 1 2V13Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  </div>
+                ))}
               </div>
               <div className="flex justify-end mt-3">
-                 <button className="text-[13px] text-gray-500 hover:text-black font-bold">Show all</button>
+                <button className="text-[13px] text-gray-500 hover:text-black font-bold">Show all</button>
               </div>
-           </div>
-        </div>
-      )
-    ) : (
+            </div>
+          </div>
+        )
+      ) : (
         <div className="flex flex-1 items-center justify-center">
           <h2 className="text-[24px] font-bold text-gray-400">Pengaturan Privasi & Data</h2>
         </div>
-    )}
+      )}
     </section>
   );
 }
@@ -1535,7 +1524,7 @@ export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState(() => {
     return localStorage.getItem("activeTab") || "Beranda";
   });
-  
+
   const [activePengaturanMenu, setActivePengaturanMenu] = useState(() => {
     return localStorage.getItem("activePengaturanMenu") || "profil";
   });
