@@ -3,39 +3,69 @@ import { motion, AnimatePresence } from 'framer-motion';
 import UMKMBerandaPanel from './UMKMBerandaPanel';
 import UMKMPesanPanel from './UMKMPesanPanel';
 import UMKMPostingPanel from './UMKMPostingPanel';
+import UMKMPengaturanPanel from './UMKMPengaturanPanel';
+import UMKMPrivasiPanel from './UMKMPrivasiPanel';
 
-// Icon helper using simple SVG based on names
-function Icon({ name, className }) {
-  const icons = {
-    beranda: (
-      <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 3l9 8h-3v8h-4v-6h-4v6H6v-8H3l9-8z" />
-      </svg>
-    ),
-    pesan: (
-      <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-      </svg>
-    ),
-    pengaturan: (
-      <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" />
-      </svg>
-    )
+// Reuse exact same Icon component from DashboardPage
+function Icon({ name, className = "h-6 w-6" }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: 2.8,
   };
-  return icons[name] || null;
+
+  const icons = {
+    home: (
+      <path {...common} d="M4 11.5 12 5l8 6.5V21h-5v-6H9v6H4z" />
+    ),
+    mail: (
+      <path {...common} d="M4 6h16v12H4zM4 7l8 6 8-6" />
+    ),
+    gear: (
+      <path {...common} d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm8 4 2-1-2-4-2 1a8 8 0 0 0-2-1.2L15.5 4h-7L8 6.8A8 8 0 0 0 6 8L4 7l-2 4 2 1a8 8 0 0 0 0 2l-2 1 2 4 2-1a8 8 0 0 0 2 1.2l.5 2.8h7l.5-2.8a8 8 0 0 0 2-1.2l2 1 2-4-2-1a8 8 0 0 0 0-2Z" />
+    ),
+    user: (
+      <path {...common} d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m8-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+    ),
+    palette: (
+      <path {...common} d="M12 21a9 9 0 0 1 0-18c4.97 0 9 3.582 9 8 0 1.06-.895 1.92-2 1.92h-1.874a2.118 2.118 0 0 0-2.117 2.124v.266a2.122 2.122 0 0 1-2.126 2.114A8.962 8.962 0 0 1 12 21Z" />
+    ),
+    lock: (
+      <path {...common} d="M19 11H5m14 0a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2m14 0V9a7 7 0 1 0-14 0v2" />
+    ),
+    'credit-card': (
+      <path {...common} d="M3 10h18M7 15h.01M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" />
+    ),
+  };
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      {icons[name]}
+    </svg>
+  );
 }
 
+const umkmMenuItems = [
+  { label: "Beranda", icon: "home" },
+  { label: "Pesan", icon: "mail" },
+];
+
+const pengaturanMenuItems = [
+  { label: "Profil", id: "profil", icon: "user" },
+  { label: "Tampilan", id: "tampilan", icon: "palette" },
+  { label: "Privasi & Data", id: "privasi", icon: "lock" },
+  { label: "Wallet", id: "wallet", icon: "credit-card" },
+];
+
 export default function UMKMDashboard({ onLogout }) {
-  const [activeMenu, setActiveMenu] = useState('beranda');
+  const [activeMenu, setActiveMenu] = useState('Beranda');
+  const [activePengaturanMenu, setActivePengaturanMenu] = useState('profil');
 
-  // We can treat activeMenu as either sidebar tab OR a sub-panel (like "posting").
-  // So when activeMenu is "posting", the sidebar might still highlight "beranda" logically,
-  // but let's just make it a clean switch.
-
-  const isMenuBeranda = activeMenu === 'beranda' || activeMenu === 'posting';
-  const isMenuPesan = activeMenu === 'pesan';
-  const isMenuPengaturan = activeMenu === 'pengaturan';
+  // "Posting" is a sub-panel of Beranda
+  const sidebarActive = activeMenu === 'Posting' ? 'Beranda' : activeMenu;
+  const isPengaturan = activeMenu === 'Pengaturan';
 
   return (
     <div className="flex h-screen w-full bg-white font-['Plus_Jakarta_Sans',sans-serif] text-[#111827] overflow-hidden">
@@ -44,57 +74,95 @@ export default function UMKMDashboard({ onLogout }) {
       </style>
 
       {/* Sidebar */}
-      <aside className="w-[280px] shrink-0 border-r border-gray-200 bg-white flex flex-col pt-[34px] px-[22px] pb-10">
-        <div className="flex items-center gap-2 mb-[50px] pl-2 cursor-pointer">
-          <img src="/kerjaria-logo-mark.svg" alt="KerjaRia Logo" className="h-[30px] w-[30px] object-contain" />
-          <span className="text-[26px] font-extrabold leading-none tracking-[-0.02em] text-[#075fd4]">KerjaRia</span>
-        </div>
+      <aside className="sticky top-0 h-screen w-[305px] shrink-0 border-r-[3px] border-[#d0d0d0] bg-white px-7 py-12 flex flex-col">
+        <a href="#" className="flex items-center gap-2" aria-label="KerjaRia">
+          <img
+            src="/kerjaria-logo-mark.svg"
+            alt=""
+            className="h-11 w-11 object-contain"
+          />
+          <span className="text-[40px] font-extrabold leading-none tracking-[-0.04em] text-[#075fd4]">
+            KerjaRia
+          </span>
+        </a>
 
-        <nav className="flex flex-col gap-2 flex-1">
-          <button
-            onClick={() => setActiveMenu('beranda')}
-            className={`flex h-[48px] items-center gap-4 rounded-[10px] px-5 text-[18px] font-extrabold transition-all duration-300 ${
-              isMenuBeranda
-                ? 'bg-[#075fd4] text-white shadow-[0_6px_0_#034aa8] scale-[1.02] hover:bg-[#0650b3]'
-                : 'text-[#343434] hover:bg-blue-50 hover:text-[#075fd4]'
-            }`}
-          >
-            <Icon name="beranda" className={`h-6 w-6 ${isMenuBeranda ? 'text-white' : 'text-[#343434]'}`} />
-            Beranda
-          </button>
+        {!isPengaturan ? (
+          <nav className="mt-16 flex flex-col gap-5 flex-1">
+            {umkmMenuItems.map((item) => {
+              const isActive = item.label === sidebarActive;
+              return (
+                <button
+                  type="button"
+                  key={item.label}
+                  onClick={() => setActiveMenu(item.label)}
+                  className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[27px] font-extrabold tracking-[-0.02em] transition-all duration-200 ${isActive
+                      ? "bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8,0_14px_28px_rgba(7,95,212,0.22)] scale-[1.02]"
+                      : "bg-white text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]"
+                    }`}
+                >
+                  <Icon
+                    name={item.icon}
+                    className={`h-7 w-7 ${item.label === "Pesan"
+                        ? "text-[#444]"
+                        : isActive
+                          ? "text-white"
+                          : "text-[#075fd4]"
+                      }`}
+                  />
+                  {item.label}
+                </button>
+              );
+            })}
+          </nav>
+        ) : (
+          <nav className="mt-16 flex flex-col gap-5 flex-1">
+            {pengaturanMenuItems.map((item) => {
+              const isActive = item.id === activePengaturanMenu;
+              return (
+                <button
+                  type="button"
+                  key={item.id}
+                  onClick={() => setActivePengaturanMenu(item.id)}
+                  className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${isActive
+                      ? "bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]"
+                      : "text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]"
+                    }`}
+                >
+                  <Icon
+                    name={item.icon}
+                    className={`h-7 w-7 ${isActive ? "text-white" : "text-[#343434]"}`}
+                  />
+                  {item.label}
+                </button>
+              );
+            })}
+          </nav>
+        )}
 
+        {!isPengaturan ? (
           <button
-            onClick={() => setActiveMenu('pesan')}
-            className={`flex h-[48px] items-center gap-4 rounded-[10px] px-5 text-[18px] font-extrabold transition-all duration-300 ${
-              isMenuPesan
-                ? 'bg-[#075fd4] text-white shadow-[0_6px_0_#034aa8] scale-[1.02] hover:bg-[#0650b3]'
-                : 'text-[#343434] hover:bg-blue-50 hover:text-[#075fd4]'
-            }`}
+            type="button"
+            onClick={() => setActiveMenu('Pengaturan')}
+            className={`mt-auto flex h-[48px] items-center gap-5 text-[26px] font-extrabold hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200 rounded-[10px] p-2 -ml-2 ${sidebarActive === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#343434]'}`}
           >
-            <Icon name="pesan" className={`h-6 w-6 ${isMenuPesan ? 'text-white' : 'text-[#343434]'}`} />
-            Pesan
-          </button>
-        </nav>
-
-        <div className="mt-auto">
-          <button
-            onClick={() => setActiveMenu('pengaturan')}
-            className={`flex h-[48px] items-center gap-4 rounded-[10px] px-5 text-[18px] font-extrabold transition-all duration-300 ${
-              isMenuPengaturan
-                ? 'bg-[#075fd4] text-white shadow-[0_6px_0_#034aa8] scale-[1.02] hover:bg-[#0650b3]'
-                : 'text-[#343434] hover:bg-gray-100'
-            }`}
-          >
-            <Icon name="pengaturan" className={`h-6 w-6 ${isMenuPengaturan ? 'text-white' : 'text-gray-500'}`} />
+            <Icon name="gear" className={`h-9 w-9 ${sidebarActive === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#777]'}`} />
             Pengaturan
           </button>
-        </div>
+        ) : (
+          <button
+            type="button"
+            onClick={onLogout}
+            className="mt-auto flex h-[48px] items-center gap-5 text-[22px] font-extrabold text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200 rounded-[10px] p-2 -ml-2"
+          >
+            Logout
+          </button>
+        )}
       </aside>
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col bg-white overflow-hidden relative">
         <AnimatePresence mode="wait">
-          {activeMenu === 'beranda' && (
+          {activeMenu === 'Beranda' && (
             <motion.div
               key="beranda"
               initial={{ opacity: 0, y: 10 }}
@@ -103,11 +171,11 @@ export default function UMKMDashboard({ onLogout }) {
               transition={{ duration: 0.3 }}
               className="absolute inset-0 flex flex-col"
             >
-              <UMKMBerandaPanel onGoToPosting={() => setActiveMenu('posting')} />
+              <UMKMBerandaPanel onGoToPosting={() => setActiveMenu('Posting')} />
             </motion.div>
           )}
 
-          {activeMenu === 'posting' && (
+          {activeMenu === 'Posting' && (
             <motion.div
               key="posting"
               initial={{ opacity: 0, x: 20 }}
@@ -116,11 +184,11 @@ export default function UMKMDashboard({ onLogout }) {
               transition={{ duration: 0.3 }}
               className="absolute inset-0 flex flex-col"
             >
-              <UMKMPostingPanel onBack={() => setActiveMenu('beranda')} />
+              <UMKMPostingPanel onBack={() => setActiveMenu('Beranda')} />
             </motion.div>
           )}
 
-          {activeMenu === 'pesan' && (
+          {activeMenu === 'Pesan' && (
             <motion.div
               key="pesan"
               initial={{ opacity: 0, scale: 0.98 }}
@@ -133,25 +201,27 @@ export default function UMKMDashboard({ onLogout }) {
             </motion.div>
           )}
 
-          {activeMenu === 'pengaturan' && (
+          {activeMenu === 'Pengaturan' && (
             <motion.div
               key="pengaturan"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50"
+              className="absolute inset-0 flex flex-col bg-white"
             >
-              <div className="bg-white p-10 rounded-2xl shadow-sm text-center">
-                <h2 className="text-2xl font-extrabold text-[#075fd4] mb-4">Pengaturan UMKM</h2>
-                <p className="text-gray-500 font-semibold mb-8">Fitur pengaturan khusus mitra UMKM akan segera hadir.</p>
-                <button
-                  onClick={onLogout}
-                  className="bg-red-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-red-600 transition-colors shadow-[0_4px_0_#c53030] active:translate-y-1 active:shadow-none"
-                >
-                  Logout
-                </button>
-              </div>
+              {activePengaturanMenu === 'profil' ? (
+                <UMKMPengaturanPanel onBack={() => setActiveMenu('Beranda')} />
+              ) : activePengaturanMenu === 'privasi' ? (
+                <UMKMPrivasiPanel onBack={() => setActiveMenu('Beranda')} />
+              ) : (
+                <div className="flex-1 flex flex-col items-center justify-center bg-gray-50">
+                  <div className="bg-white p-10 rounded-2xl shadow-sm text-center">
+                    <h2 className="text-2xl font-extrabold text-[#075fd4] mb-4">Pengaturan {activePengaturanMenu}</h2>
+                    <p className="text-gray-500 font-semibold mb-8">Fitur pengaturan khusus mitra UMKM akan segera hadir.</p>
+                  </div>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -159,3 +229,5 @@ export default function UMKMDashboard({ onLogout }) {
     </div>
   );
 }
+
+

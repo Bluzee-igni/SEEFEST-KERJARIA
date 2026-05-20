@@ -61,46 +61,54 @@ function StatCard({ icon, count, label, colorClass, iconColorClass }) {
   );
 }
 
-function ProjectCard({ title, fee, status, tags, delay }) {
+function ProjectCard({ title, fee, status, icon, color, delay }) {
   const statusColors = {
-    'COMPLETED': 'bg-green-100 text-green-700 border-green-200',
-    'ON PROGRESS': 'bg-blue-100 text-blue-700 border-blue-200',
-    'DITINJAU': 'bg-orange-100 text-orange-700 border-orange-200'
+    'COMPLETED': 'bg-green-100 text-green-700',
+    'ON PROGRESS': 'bg-blue-100 text-blue-700',
+    'DITINJAU': 'bg-orange-100 text-orange-700'
   };
   
-  const statusColor = statusColors[status] || 'bg-gray-100 text-gray-600 border-gray-200';
+  const statusColor = statusColors[status] || 'bg-gray-100 text-gray-600';
+  const [bgClass, textClass] = color.split(" ");
 
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.4 }}
-      whileHover={{ y: -4 }}
-      className="bg-white border border-gray-100 rounded-2xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_25px_rgba(7,95,212,0.1)] transition-all cursor-pointer flex flex-col h-[180px] group relative overflow-hidden"
+      className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col gap-6"
     >
-      {/* Decorative gradient blob on hover */}
-      <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-      <div className="flex gap-4 relative z-10">
-        <div className="w-20 h-20 rounded-xl bg-gray-100 flex items-center justify-center shrink-0 border border-gray-200 overflow-hidden">
-          <svg className="w-8 h-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      {/* Top Section — same layout as MisiCard */}
+      <div className="flex gap-5 items-center">
+        {/* Icon */}
+        <div className={`w-[70px] h-[70px] rounded-[16px] ${bgClass} ${textClass} flex items-center justify-center flex-shrink-0`}>
+          <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            {icon}
           </svg>
         </div>
-        <div className="flex-1 pt-1">
-          <h3 className="text-[18px] font-extrabold text-[#343434] leading-tight mb-1 group-hover:text-[#075fd4] transition-colors">{title}</h3>
-          <p className="text-[14px] font-bold text-gray-600">Fee : Rp {fee}</p>
-          
-          <div className="flex gap-1 mt-3">
-            {[1,2,3].map(i => (
-              <div key={i} className="w-3 h-3 rounded-full bg-gray-300 group-hover:bg-blue-300 transition-colors"></div>
+
+        {/* Info */}
+        <div className="flex flex-col flex-1">
+          <h3 className="text-[20px] font-extrabold text-gray-800 leading-tight">{title}</h3>
+          <p className="text-[13px] text-gray-500 font-bold mt-1">Fee : Rp {fee}</p>
+
+          {/* Sub-steps dots — same as MisiCard */}
+          <div className="flex items-center mt-2.5">
+            {[0,1,2].map((i) => (
+              <React.Fragment key={i}>
+                <div className={`w-3.5 h-3.5 rounded-full border-[2px] ${i < 2 ? 'bg-gray-500 border-gray-500' : 'bg-white border-gray-300'} z-10 flex-shrink-0`} />
+                {i < 2 && (
+                  <div className={`w-4 h-[2px] ${i < 1 ? 'bg-gray-500' : 'bg-gray-200'} z-0 flex-shrink-0 -mx-[1px]`} />
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
       </div>
       
-      <div className="mt-auto flex justify-end relative z-10">
-        <span className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider border ${statusColor}`}>
+      {/* Bottom — status badge */}
+      <div className="flex justify-end mt-auto">
+        <span className={`px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider border ${statusColor}`}>
           {status}
         </span>
       </div>
@@ -166,17 +174,17 @@ export default function UMKMBerandaPanel({ onGoToPosting }) {
           />
         </div>
 
-        {/* Tabs & Add Button */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex bg-gray-200 rounded-xl p-1 gap-1">
+        {/* Tabs & Add Button — pill style from MisiPanel */}
+        <div className="flex items-center justify-between mb-6 border-b-[1.5px] border-[#d0d0d0] pb-6">
+          <div className="flex flex-wrap items-center gap-3">
             {tabs.map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2 rounded-lg text-[12px] font-extrabold transition-all ${
+                className={`px-5 py-2 rounded-full text-[14px] font-bold shadow-sm transition-transform hover:scale-105 ${
                   activeTab === tab 
-                    ? 'bg-gray-500 text-white shadow-sm' 
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-300/50'
+                    ? 'bg-[#075fd4] text-white shadow-md' 
+                    : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50'
                 }`}
               >
                 {tab}
@@ -186,21 +194,38 @@ export default function UMKMBerandaPanel({ onGoToPosting }) {
           
           <button 
             onClick={onGoToPosting}
-            className="bg-gray-400 text-white px-6 py-2 rounded-xl text-[14px] font-extrabold flex items-center gap-2 hover:bg-[#075fd4] hover:shadow-[0_4px_12px_rgba(7,95,212,0.3)] transition-all duration-300"
+            className="bg-gray-600 text-white px-6 py-2 rounded-full text-[14px] font-extrabold flex items-center gap-2 shadow-sm hover:bg-[#075fd4] hover:shadow-md hover:scale-105 transition-all duration-200"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"></path></svg>
             Tambah
           </button>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-2 gap-6">
-          <ProjectCard title="Landing Page usaha" fee="50.000" status="COMPLETED" delay={0.1} />
-          <ProjectCard title="Video Reels" fee="40.000" status="ON PROGRESS" delay={0.2} />
-          <ProjectCard title="Desain Banner Promosi" fee="75.000" status="DITINJAU" delay={0.3} />
-          <ProjectCard title="Video Reels" fee="40.000" status="ON PROGRESS" delay={0.4} />
+        {/* Projects Grid — same grid as MisiPanel */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 px-2">
+          <ProjectCard 
+            title="Landing Page usaha" fee="50.000" status="COMPLETED" delay={0.1}
+            icon={<path d="M7 5v14M17 5v14M4 9h16M4 15h16" />}
+            color="bg-[#eef2ff] text-[#4f46e5]"
+          />
+          <ProjectCard 
+            title="Video Reels" fee="40.000" status="ON PROGRESS" delay={0.2}
+            icon={<path d="m15.5 4.5 4 4L9 19H5v-4z" />}
+            color="bg-[#fff1f2] text-[#e11d48]"
+          />
+          <ProjectCard 
+            title="Desain Banner Promosi" fee="75.000" status="DITINJAU" delay={0.3}
+            icon={<path d="m9 8-4 4 4 4m6-8 4 4-4 4" />}
+            color="bg-[#f0fdf4] text-[#16a34a]"
+          />
+          <ProjectCard 
+            title="Video Reels" fee="40.000" status="ON PROGRESS" delay={0.4}
+            icon={<path d="m15.5 4.5 4 4L9 19H5v-4z" />}
+            color="bg-[#fce7f3] text-[#db2777]"
+          />
         </div>
       </div>
     </div>
   );
 }
+

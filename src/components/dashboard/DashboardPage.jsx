@@ -93,13 +93,10 @@ function Icon({ name, className = "h-6 w-6" }) {
       </>
     ),
     palette: (
-      <>
-        <path {...common} d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z" />
-        <circle cx="7.5" cy="10.5" r="1.5" fill="currentColor" />
-        <circle cx="12" cy="7" r="1.5" fill="currentColor" />
-        <circle cx="16.5" cy="10.5" r="1.5" fill="currentColor" />
-        <path fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" d="M11 16h4" />
-      </>
+      <path {...common} d="M12 21a9 9 0 0 1 0-18c4.97 0 9 3.582 9 8 0 1.06-.895 1.92-2 1.92h-1.874a2.118 2.118 0 0 0-2.117 2.124v.266a2.122 2.122 0 0 1-2.126 2.114A8.962 8.962 0 0 1 12 21Z" />
+    ),
+    'credit-card': (
+      <path {...common} d="M3 10h18M7 15h.01M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" />
     ),
     robotHead: (
       <svg viewBox="0 0 100 100" fill="currentColor">

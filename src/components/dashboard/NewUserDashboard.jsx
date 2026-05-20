@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import VerifikasiModal from './VerifikasiModal';
 import PrivasiDataContent from './PrivasiDataContent';
 import MissionDetailModal from "./MissionDetailModal";
@@ -39,6 +39,11 @@ function Icon({ name, className = "h-6 w-6" }) {
     edit: <path {...common} d="m15.5 4.5 4 4L9 19H5v-4z" />,
     download: <path {...common} d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />,
     trash: <path fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0 1 16.138 21H7.862a2 2 0 0 1-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v3M4 7h16" />,
+    user: <path {...common} d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m8-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />,
+    palette: <path {...common} d="M12 21a9 9 0 0 1 0-18c4.97 0 9 3.582 9 8 0 1.06-.895 1.92-2 1.92h-1.874a2.118 2.118 0 0 0-2.117 2.124v.266a2.122 2.122 0 0 1-2.126 2.114A8.962 8.962 0 0 1 12 21Z" />,
+    lock: <path {...common} d="M19 11H5m14 0a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2m14 0V9a7 7 0 1 0-14 0v2" />,
+    'credit-card': <path {...common} d="M3 10h18M7 15h.01M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" />,
+    check: <path fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />,
     robotHead: (
       <svg viewBox="0 0 100 100" fill="currentColor">
         <path d="M35 40 Q30 5 40 5 Q48 5 45 40 Z" />

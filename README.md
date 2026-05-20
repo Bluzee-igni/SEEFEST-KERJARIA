@@ -43,6 +43,11 @@ Jalankan perintah berikut untuk mengunduh semua package yang dibutuhkan:
 npm install
 ```
 
+Pastikan juga dependensi Tailwind CSS sudah terinstal:
+```bash
+npm install @tailwindcss/vite tailwindcss
+```
+
 ### 3. Jalankan Development Server
 Mulai server lokal Vite dengan perintah:
 ```bash
