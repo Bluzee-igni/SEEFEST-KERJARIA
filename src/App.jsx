@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AgeQuestionPage from "./components/AgeQuestionPage";
+import DashboardPage from "./components/DashboardPage";
 import EducationQuestionPage from "./components/EducationQuestionPage";
 import LandingPage from "./components/LandingPage";
 import LearningInterestPage from "./components/LearningInterestPage";
@@ -51,11 +52,15 @@ function App() {
         role={role}
         age={age}
         education={education}
-        onNext={() => setPage("landing")}
+        onNext={() => setPage("dashboard")}
         onClose={() => setPage("landing")}
         onLogin={() => setPage("landing")}
       />
     );
+  }
+
+  if (page === "dashboard") {
+    return <DashboardPage />;
   }
 
   if (page === "role") {

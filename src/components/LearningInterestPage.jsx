@@ -1,8 +1,27 @@
 import { useState } from "react";
 
-const interests = Array.from({ length: 18 }, (_, index) => ({
-  id: `frontend-${index + 1}`,
-  title: "Frontend Developer",
+const interests = [
+  "Artificial Intelligence",
+  "Digital Business",
+  "Programmer",
+  "Creative Design",
+  "Network System",
+  "Internet of Things",
+  "Cyber Security",
+  "Fiber Optic",
+  "Social Media Specialist",
+  "Digital Marketing",
+  "Content Creator",
+  "Data Analyst",
+  "Video Editor",
+  "E-Commerce",
+  "Copywriter",
+  "UI/UX Designer",
+  "Graphic Designer",
+  "Project Management",
+].map((title) => ({
+  id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+  title,
 }));
 
 function RobotEars() {
@@ -26,7 +45,7 @@ function RobotEars() {
 
 function CodeIcon() {
   return (
-    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[2px] border border-[#ff9800] bg-[#ffdca2] text-[13px] font-extrabold text-[#ff8700]">
+    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-[2px] border border-[#ff9800] bg-[#ffdca2] text-[12px] font-extrabold text-[#ff8700]">
       &lt;/&gt;
     </span>
   );
@@ -91,16 +110,15 @@ export default function LearningInterestPage({ onClose, onLogin, onNext }) {
                     setSelectedInterest(interest.id);
                     setSubmitted(false);
                   }}
-                  className={`flex h-[96px] items-center gap-4 rounded-[4px] bg-white px-4 text-left text-black shadow-[0_8px_0_-2px_#b9d9ff] transition ${
+                  className={`grid h-[96px] grid-cols-[32px_minmax(0,1fr)] items-center gap-5 rounded-[4px] bg-white px-4 text-left text-black shadow-[0_8px_0_-2px_#b9d9ff] transition ${
                     isSelected
                       ? "ring-4 ring-[#ffd66b]"
                       : "hover:-translate-y-0.5 hover:shadow-[0_10px_0_-2px_#b9d9ff]"
                   }`}
                 >
                   <CodeIcon />
-                  <span className="text-[15px] font-extrabold leading-[1.05] tracking-[0px]">
-                    Frontend
-                    <span className="block">Developer</span>
+                  <span className="min-w-0 max-w-[92px] text-[13px] font-extrabold leading-[1.04] tracking-[0px]">
+                    {interest.title}
                   </span>
                 </button>
               );
