@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MissionDetailModal from "./MissionDetailModal";
 
 const menuItems = [
   { label: "Beranda", icon: "home" },
@@ -148,6 +149,19 @@ function FreshLevelHero() {
 }
 
 function FreshMissionPanel() {
+  const [selectedMission, setSelectedMission] = useState(null);
+
+  const starterMission = {
+    id: 1,
+    title: "Dasar HTML",
+    subtitle: "Struktur HTML Dasar",
+    progress: 0,
+    totalSteps: 5,
+    completedSteps: 0,
+    icon: "code",
+    color: "bg-[#dbeafe] text-[#075fd4]"
+  };
+
   return (
     <section className="rounded-[24px] border-[1.5px] border-[#cecece] bg-white p-6 shadow-sm">
       <div className="mb-6 flex items-center gap-4">
@@ -161,7 +175,7 @@ function FreshMissionPanel() {
 
       <div className="rounded-[20px] border-[1.5px] border-[#e0e0e0] flex flex-col overflow-hidden bg-white">
         {/* Single starter mission */}
-        <div className="flex min-h-[76px] items-center gap-5 px-6 py-4">
+        <div className="flex min-h-[76px] items-center gap-5 px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => setSelectedMission(starterMission)}>
           <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[#dbeafe]">
             <Icon name="code" className="h-6 w-6 text-[#075fd4]" />
           </span>
@@ -176,6 +190,9 @@ function FreshMissionPanel() {
           </div>
         </div>
       </div>
+      {selectedMission && (
+        <MissionDetailModal mission={selectedMission} onClose={() => setSelectedMission(null)} />
+      )}
     </section>
   );
 }
@@ -366,10 +383,10 @@ const MISI_DATA = [
   { id: 10, title: "Product Manager", subtitle: "Tulis PRD untuk fitur baru", progress: 0, totalSteps: 5, completedSteps: 0, icon: "book", color: "bg-[#dcfce7] text-[#15803d]" },
 ];
 
-function MisiCard({ title, subtitle, progress, totalSteps, completedSteps, icon, color }) {
+function MisiCard({ title, subtitle, progress, totalSteps, completedSteps, icon, color, onClick }) {
   const [bgClass, textClass] = color.split(" ");
   return (
-    <div className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col gap-6">
+    <div onClick={onClick} className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col gap-6">
       {/* Top Section */}
       <div className="flex gap-5 items-center">
         {/* Icon */}
@@ -413,6 +430,7 @@ function MisiCard({ title, subtitle, progress, totalSteps, completedSteps, icon,
 function EmptyMisiPanel() {
   const [activeFilter, setActiveFilter] = useState("Semua Misi");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedMission, setSelectedMission] = useState(null);
 
   const filteredMissions = MISI_DATA.filter((misi) => {
     // 1. Filter by category
@@ -473,7 +491,7 @@ function EmptyMisiPanel() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
         {filteredMissions.map(misi => (
-          <MisiCard key={misi.id} {...misi} />
+          <MisiCard key={misi.id} {...misi} onClick={() => setSelectedMission(misi)} />
         ))}
         {filteredMissions.length === 0 && (
           <div className="col-span-1 md:col-span-2 py-10 flex items-center justify-center text-gray-500 font-bold">
@@ -481,6 +499,9 @@ function EmptyMisiPanel() {
           </div>
         )}
       </div>
+      {selectedMission && (
+        <MissionDetailModal mission={selectedMission} onClose={() => setSelectedMission(null)} />
+      )}
     </section>
   );
 }

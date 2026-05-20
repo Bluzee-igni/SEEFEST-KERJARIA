@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import MissionDetailModal from "./MissionDetailModal";
 
 const menuItems = [
   { label: "Beranda", icon: "home" },
@@ -916,10 +917,10 @@ const MISI_DATA = [
   { id: 10, title: "Product Manager", subtitle: "Tulis PRD untuk fitur baru", progress: 60, totalSteps: 5, completedSteps: 3, icon: "book", color: "bg-[#dcfce7] text-[#15803d]" },
 ];
 
-function MisiCard({ title, subtitle, progress, totalSteps, completedSteps, icon, color }) {
+function MisiCard({ title, subtitle, progress, totalSteps, completedSteps, icon, color, onClick }) {
   const [bgClass, textClass] = color.split(" ");
   return (
-    <div className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col gap-6 dm-card">
+    <div onClick={onClick} className="bg-white rounded-[20px] p-6 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col gap-6 dm-card">
       {/* Top Section */}
       <div className="flex gap-5 items-center">
         {/* Icon */}
@@ -963,6 +964,7 @@ function MisiCard({ title, subtitle, progress, totalSteps, completedSteps, icon,
 function MisiPanel() {
   const [activeFilter, setActiveFilter] = useState("Semua Misi");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedMission, setSelectedMission] = useState(null);
 
   const filteredMissions = MISI_DATA.filter((misi) => {
     // 1. Filter by category
@@ -1024,7 +1026,7 @@ function MisiPanel() {
       {filteredMissions.length > 0 ? (
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 px-2">
           {filteredMissions.map((misi) => (
-            <MisiCard key={misi.id} {...misi} />
+            <MisiCard key={misi.id} {...misi} onClick={() => setSelectedMission(misi)} />
           ))}
         </div>
       ) : (
@@ -1032,6 +1034,9 @@ function MisiPanel() {
           <svg className="w-16 h-16 mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <p className="text-[16px] font-bold">Misi tidak ditemukan.</p>
         </div>
+      )}
+      {selectedMission && (
+        <MissionDetailModal mission={selectedMission} onClose={() => setSelectedMission(null)} />
       )}
     </section>
   );
