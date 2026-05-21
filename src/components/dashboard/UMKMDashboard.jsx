@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useParams } from 'react-router-dom';
 import UMKMBerandaPanel from './UMKMBerandaPanel';
 import UMKMPesanPanel from './UMKMPesanPanel';
 import UMKMPostingPanel from './UMKMPostingPanel';
 import UMKMPengaturanPanel from './UMKMPengaturanPanel';
-import UMKMPrivasiPanel from './UMKMPrivasiPanel';
 
 // Reuse exact same Icon component from DashboardPage
 function Icon({ name, className = "h-6 w-6" }) {
@@ -59,9 +59,21 @@ const pengaturanMenuItems = [
   { label: "Wallet", id: "wallet", icon: "credit-card" },
 ];
 
-export default function UMKMDashboard({ onLogout }) {
-  const [activeMenu, setActiveMenu] = useState('Beranda');
-  const [activePengaturanMenu, setActivePengaturanMenu] = useState('profil');
+export default function UMKMDashboard({ onLogout, routeMenu = 'Beranda', routePengaturanMenu }) {
+  const navigate = useNavigate();
+  const params = useParams();
+  const paramSection = params.section ? params.section.toLowerCase() : '';
+
+  const [activeMenu, setActiveMenu] = useState(routeMenu);
+  const [activePengaturanMenu, setActivePengaturanMenu] = useState(paramSection || routePengaturanMenu || 'profil');
+
+  useEffect(() => {
+    setActiveMenu(routeMenu);
+  }, [routeMenu]);
+
+  useEffect(() => {
+    setActivePengaturanMenu(paramSection || routePengaturanMenu || 'profil');
+  }, [routePengaturanMenu, paramSection]);
 
   // "Posting" is a sub-panel of Beranda
   const sidebarActive = activeMenu === 'Posting' ? 'Beranda' : activeMenu;
@@ -94,7 +106,11 @@ export default function UMKMDashboard({ onLogout }) {
                 <button
                   type="button"
                   key={item.label}
-                  onClick={() => setActiveMenu(item.label)}
+                  onClick={() => {
+                    setActiveMenu(item.label);
+                    if (item.label === 'Beranda') navigate('/umkm');
+                    if (item.label === 'Pesan') navigate('/umkm/pesan');
+                  }}
                   className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[27px] font-extrabold tracking-[-0.02em] transition-all duration-200 ${isActive
                       ? "bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8,0_14px_28px_rgba(7,95,212,0.22)] scale-[1.02]"
                       : "bg-white text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]"
@@ -122,7 +138,11 @@ export default function UMKMDashboard({ onLogout }) {
                 <button
                   type="button"
                   key={item.id}
-                  onClick={() => setActivePengaturanMenu(item.id)}
+                  onClick={() => {
+                    setActiveMenu('Pengaturan');
+                    setActivePengaturanMenu(item.id);
+                    navigate(`/umkm/pengaturan/${item.id}`);
+                  }}
                   className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[22px] font-extrabold transition-all duration-200 ${isActive
                       ? "bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8] scale-[1.02]"
                       : "text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]"
@@ -142,7 +162,10 @@ export default function UMKMDashboard({ onLogout }) {
         {!isPengaturan ? (
           <button
             type="button"
-            onClick={() => setActiveMenu('Pengaturan')}
+            onClick={() => {
+              setActiveMenu('Pengaturan');
+              navigate('/umkm/pengaturan/profil');
+            }}
             className={`mt-auto flex h-[48px] items-center gap-5 text-[26px] font-extrabold hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200 rounded-[10px] p-2 -ml-2 ${sidebarActive === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#343434]'}`}
           >
             <Icon name="gear" className={`h-9 w-9 ${sidebarActive === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#777]'}`} />
@@ -210,18 +233,7 @@ export default function UMKMDashboard({ onLogout }) {
               transition={{ duration: 0.3 }}
               className="absolute inset-0 flex flex-col bg-white"
             >
-              {activePengaturanMenu === 'profil' ? (
-                <UMKMPengaturanPanel onBack={() => setActiveMenu('Beranda')} />
-              ) : activePengaturanMenu === 'privasi' ? (
-                <UMKMPrivasiPanel onBack={() => setActiveMenu('Beranda')} />
-              ) : (
-                <div className="flex-1 flex flex-col items-center justify-center bg-gray-50">
-                  <div className="bg-white p-10 rounded-2xl shadow-sm text-center">
-                    <h2 className="text-2xl font-extrabold text-[#075fd4] mb-4">Pengaturan {activePengaturanMenu}</h2>
-                    <p className="text-gray-500 font-semibold mb-8">Fitur pengaturan khusus mitra UMKM akan segera hadir.</p>
-                  </div>
-                </div>
-              )}
+              <UMKMPengaturanPanel onBack={() => navigate('/umkm')} initialMenu={activePengaturanMenu} />
             </motion.div>
           )}
         </AnimatePresence>

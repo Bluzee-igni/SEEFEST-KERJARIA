@@ -130,19 +130,19 @@ function Icon({ name, className = "h-6 w-6" }) {
 
 function Sidebar({ activeTab, setActiveTab }) {
   return (
-    <aside className="sticky top-0 hidden h-screen w-[305px] shrink-0 self-start border-r-[3px] border-[#d0d0d0] bg-white px-7 py-12 lg:flex lg:flex-col">
+    <aside className="sticky top-0 hidden h-screen w-[260px] shrink-0 self-start border-r-[2px] border-[#d0d0d0] bg-white px-5 py-10 lg:flex lg:flex-col">
       <a href="#" className="flex items-center gap-2" aria-label="KerjaRia">
         <img
           src="/kerjaria-logo-mark.svg"
           alt=""
-          className="h-11 w-11 object-contain"
+          className="h-8 w-8 object-contain"
         />
-        <span className="text-[40px] font-extrabold leading-none tracking-[-0.04em] text-[#075fd4]">
+        <span className="text-[28px] font-extrabold leading-none tracking-[-0.02em] text-[#075fd4]">
           KerjaRia
         </span>
       </a>
 
-      <nav className="mt-16 flex flex-col gap-5">
+      <nav className="mt-12 flex flex-col gap-3">
         {menuItems.map((item) => {
           const isActive = item.label === activeTab;
           return (
@@ -150,14 +150,14 @@ function Sidebar({ activeTab, setActiveTab }) {
               type="button"
               key={item.label}
               onClick={() => setActiveTab(item.label)}
-              className={`flex h-[55px] items-center gap-4 rounded-[10px] px-5 text-left text-[27px] font-extrabold tracking-[-0.02em] transition-all duration-200 ${isActive
+              className={`flex h-[48px] items-center gap-3 rounded-[10px] px-4 text-left text-[18px] font-extrabold tracking-[-0.02em] transition-all duration-200 ${isActive
                   ? "bg-[#075fd4] text-white shadow-[0_7px_0_#034aa8,0_14px_28px_rgba(7,95,212,0.22)] scale-[1.02]"
                   : "bg-white text-[#343434] hover:bg-[#f0f0f0] hover:scale-[1.02]"
                 }`}
             >
-              <Icon
+                <Icon
                 name={item.icon}
-                className={`h-7 w-7 ${item.label === "Event"
+                className={`h-5 w-5 ${item.label === "Event"
                     ? "text-[#c63cff]"
                     : item.label === "Level"
                       ? "text-[#ffb000]"
@@ -181,9 +181,9 @@ function Sidebar({ activeTab, setActiveTab }) {
       <button
         type="button"
         onClick={() => setActiveTab("Pengaturan")}
-        className={`mt-auto flex h-[48px] items-center gap-5 text-[26px] font-extrabold hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200 rounded-[10px] p-2 -ml-2 ${activeTab === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#343434]'}`}
+        className={`mt-auto flex h-[44px] items-center gap-3 text-[16px] font-extrabold hover:bg-[#f0f0f0] hover:scale-[1.02] transition-all duration-200 rounded-[10px] p-2 -ml-2 ${activeTab === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#343434]'}`}
       >
-        <Icon name="gear" className={`h-9 w-9 ${activeTab === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#777]'}`} />
+        <Icon name="gear" className={`h-6 w-6 ${activeTab === 'Pengaturan' ? 'text-[#075fd4]' : 'text-[#777]'}`} />
         Pengaturan
       </button>
     </aside>
@@ -194,29 +194,29 @@ function LevelHero() {
   return (
     <section className="relative overflow-hidden rounded-[22px] bg-[#075fd4] px-8 py-8 text-white shadow-[0_9px_0_#034aa8]">
       <Icon name="bell" className="absolute right-7 top-6 h-7 w-7 text-white" />
-      <div className="flex items-center gap-9">
-        <div className="relative grid h-[205px] w-[205px] shrink-0 place-items-center">
+      <div className="flex items-center gap-6">
+        <div className="relative grid h-[140px] w-[140px] shrink-0 place-items-center">
           <img
             src="/level-rabbit-logo.svg"
             alt=""
             className="absolute inset-0 h-full w-full object-contain"
           />
-          <strong className="relative text-[98px] font-extrabold leading-none text-[#075fd4]">
+          <strong className="relative text-[48px] font-extrabold leading-none text-[#075fd4]">
             17
           </strong>
         </div>
 
         <div className="min-w-0 flex-1">
-          <h1 className="text-[46px] font-extrabold leading-none tracking-[-0.03em]">
+          <h1 className="text-[28px] font-extrabold leading-none tracking-[-0.03em]">
             Level 17
           </h1>
-          <div className="mt-3 h-[24px] w-[166px] rounded-full bg-[#ffb000] text-center text-[15px] font-extrabold leading-[24px] text-[#5c3600] shadow-[inset_0_0_0_2px_rgba(255,255,255,0.3)]">
+          <div className="mt-2.5 h-[20px] w-[140px] rounded-full bg-[#ffb000] text-center text-[13px] font-extrabold leading-[20px] text-[#5c3600] shadow-[inset_0_0_0_2px_rgba(255,255,255,0.3)]">
             Junior Explorer
           </div>
-          <div className="mt-3 h-[30px] overflow-hidden rounded-full bg-white/35">
+          <div className="mt-3 h-[22px] overflow-hidden rounded-full bg-white/35">
             <div className="h-full w-1/2 rounded-full bg-white" />
           </div>
-          <div className="mt-4 flex items-center justify-between text-[22px] font-semibold">
+          <div className="mt-3 flex items-center justify-between text-[14px] font-semibold">
             <span>2.000 / 4.000 XP</span>
             <span>2.000 XP lagi untuk level 18</span>
           </div>
@@ -229,11 +229,11 @@ function LevelHero() {
 function MissionPanel() {
   return (
     <section className="rounded-[24px] border-[1.5px] border-[#cecece] bg-white p-6 shadow-sm dm-card">
-      <div className="mb-6 flex items-center gap-4">
-        <span className="grid h-10 w-10 place-items-center rounded-full bg-[#075fd4] text-white shadow-sm">
-          <Icon name="book" className="h-6 w-6" />
+      <div className="mb-4 flex items-center gap-3">
+        <span className="grid h-8 w-8 place-items-center rounded-full bg-[#075fd4] text-white shadow-sm">
+          <Icon name="book" className="h-5 w-5" />
         </span>
-        <h2 className="text-[26px] font-extrabold tracking-tight text-[#343434] dm-text">
+        <h2 className="text-[20px] font-extrabold tracking-tight text-[#343434] dm-text">
           Misi Berlangsung
         </h2>
       </div>
@@ -272,7 +272,7 @@ function MissionPanel() {
 function EventBannerKemerdekaan() {
   return (
     <div
-      className="relative h-[220px] w-full overflow-hidden rounded-[24px] bg-cover bg-left-bottom"
+      className="relative h-[180px] w-full overflow-hidden rounded-[24px] bg-cover bg-left-bottom"
       style={{ backgroundImage: "url('/event-kemerdekaan-bg.svg')" }}
     >
       <div className="relative z-10 h-full px-10 flex flex-col justify-center items-start">
@@ -290,7 +290,7 @@ function EventBannerKemerdekaan() {
           </svg>
         </button>
       </div>
-      <img src="/event-kemerdekaan-robot.svg" alt="" className="absolute bottom-0 right-[8%] h-[200px] w-auto object-contain pointer-events-none" />
+      <img src="/event-kemerdekaan-robot.svg" alt="" className="absolute bottom-0 right-[6%] h-[140px] w-auto object-contain pointer-events-none" />
     </div>
   );
 }
@@ -298,7 +298,7 @@ function EventBannerKemerdekaan() {
 function EventBannerPramuka() {
   return (
     <div
-      className="relative h-[220px] w-full overflow-hidden rounded-[24px] bg-cover bg-left-bottom"
+      className="relative h-[180px] w-full overflow-hidden rounded-[24px] bg-cover bg-left-bottom"
       style={{ backgroundImage: "url('/event-pramuka-bg.svg')" }}
     >
       <div className="relative z-10 h-full px-10 flex flex-col justify-center items-start">
@@ -316,7 +316,7 @@ function EventBannerPramuka() {
           </svg>
         </button>
       </div>
-      <img src="/event-pramuka-robot.svg" alt="" className="absolute bottom-0 right-[8%] h-[200px] w-auto object-contain pointer-events-none" />
+      <img src="/event-pramuka-robot.svg" alt="" className="absolute bottom-0 right-[6%] h-[140px] w-auto object-contain pointer-events-none" />
     </div>
   );
 }
@@ -338,10 +338,10 @@ function ProfilePanel({ setActiveTab }) {
 
       {/* Top Blue section with avatar */}
       <div
-        className="bg-[#075fd4] rounded-t-[20px] px-6 pt-6 pb-24 relative flex flex-col items-center cursor-pointer hover:bg-[#0654c0] transition-colors group"
+        className="bg-[#075fd4] rounded-t-[20px] px-6 pt-6 pb-20 relative flex flex-col items-center cursor-pointer hover:bg-[#0654c0] transition-colors group"
         onClick={() => setActiveTab("Pengaturan")}
       >
-        <div className="w-full flex justify-between items-center text-[16px] font-extrabold text-white">
+        <div className="w-full flex justify-between items-center text-[14px] font-extrabold text-white">
           <span className="flex items-center gap-2">
             <span className="w-8 h-8 rounded-[8px] bg-white text-[#075fd4] flex items-center justify-center shadow-sm">17</span>
             2.000 XP
@@ -354,10 +354,10 @@ function ProfilePanel({ setActiveTab }) {
           </span>
         </div>
 
-        <div className="w-[140px] h-[140px] rounded-full border-[6px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ff8f8f] mt-8 shadow-md relative z-20 overflow-hidden group-hover:scale-105 transition-transform">
+        <div className="w-[100px] h-[100px] rounded-full border-[5px] border-[#ffd245] bg-gradient-to-br from-[#fff0a9] to-[#ff8f8f] mt-6 shadow-md relative z-20 overflow-hidden group-hover:scale-105 transition-transform">
           <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
         </div>
-        <div className="w-7 h-7 bg-white text-[#075fd4] rounded-md absolute bottom-[100px] right-[70px] z-30 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-100">
+        <div className="w-7 h-7 bg-white text-[#075fd4] rounded-md absolute bottom-[86px] right-[58px] z-30 flex items-center justify-center shadow-md cursor-pointer hover:bg-gray-100">
           <Icon name="edit" className="w-4 h-4" />
         </div>
 
@@ -370,19 +370,19 @@ function ProfilePanel({ setActiveTab }) {
       </div>
 
       {/* Stats Ticket Layer */}
-      <div className="absolute top-[350px] left-4 right-4 flex justify-between z-30 pointer-events-none">
+      <div className="absolute top-[260px] left-4 right-4 flex justify-between z-30 pointer-events-none">
         {/* 3 Ticket shapes */}
         {[
           ["book", "12", "Misi\nTersedia", "#075fd4"],
           ["check", "9", "Misi\nSelesai", "#00c943"],
           ["star", "3", "Skill\nDipelajari", "#d50bb9"],
         ].map(([icon, count, label, color]) => (
-          <div key={label} className="w-[85px] bg-white rounded-t-[12px] rounded-b-[4px] shadow-md flex flex-col items-center pt-3 pb-5 relative pointer-events-auto dm-card">
+          <div key={label} className="w-[72px] bg-white rounded-t-[12px] rounded-b-[4px] shadow-md flex flex-col items-center pt-2 pb-4 relative pointer-events-auto dm-card">
             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white shadow-inner mb-1" style={{ backgroundColor: color }}>
               <Icon name={icon} className="w-5 h-5" />
             </div>
-            <strong className="text-black text-[22px] font-extrabold mt-1 leading-none">{count}</strong>
-            <span className="text-gray-500 text-[10px] font-bold text-center leading-tight mt-1">{label}</span>
+            <strong className="text-black text-[18px] font-extrabold mt-1 leading-none">{count}</strong>
+            <span className="text-gray-500 text-[9px] font-bold text-center leading-tight mt-1">{label}</span>
             {/* Ticket triangle bottom */}
             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rotate-45 shadow-[3px_3px_5px_rgba(0,0,0,0.05)] -z-10 rounded-sm"></div>
           </div>
@@ -1491,17 +1491,43 @@ function TampilanContent({ theme, setTheme }) {
 }
 
 function WalletPanel() {
+  const historyItems = [
+    { amount: '+150.000', date: 'Senin, 18 Mei 2026', label: 'Uang masuk', note: 'Pengirim: PT Maju Jaya', type: 'in' },
+    { amount: '-50.000', date: 'Sabtu, 16 Mei 2026', label: 'Uang ditarik', note: 'Bank BCA', type: 'out' },
+    { amount: '+75.000', date: 'Rabu, 13 Mei 2026', label: 'Uang masuk', note: 'Pengirim: CV Sukses Selalu', type: 'in' },
+    { amount: '+43.000', date: 'Minggu, 10 Mei 2026', label: 'Uang masuk', note: 'Pengirim: PT Bensin', type: 'in' },
+  ];
+
+  const HistoryIcon = ({ type }) => {
+    const isIn = type === 'in';
+    return (
+      <div className={`w-[80px] h-[80px] rounded-xl shrink-0 flex items-center justify-center ${isIn ? 'bg-[#e8f3ff]' : 'bg-[#fff0e5]'}`}>
+        <div className={`w-[48px] h-[48px] rounded-full flex items-center justify-center ${isIn ? 'bg-[#1f8bff]' : 'bg-[#f97316]'}`}>
+          {isIn ? (
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 19V5m0 0l-5 5m5-5l5 5" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14m0 0l5-5m-5 5l-5-5" />
+            </svg>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-10 mt-6 px-4">
       {/* Saldo Card */}
       <div className="w-full md:w-[350px] shrink-0">
-        <div className="bg-[#d4d4d4] rounded-[24px] p-8 flex flex-col justify-between h-[220px] shadow-sm relative overflow-hidden">
+        <div className="bg-[#075fd4] rounded-[24px] p-8 flex flex-col justify-between h-[220px] shadow-sm relative overflow-hidden">
           <div>
-            <span className="text-[16px] font-bold text-gray-600 flex items-baseline gap-2">
-              Rp. <span className="text-[42px] font-extrabold text-[#343434] tracking-tight">218.000,00</span>
+            <span className="text-[16px] font-bold text-white flex items-baseline gap-2">
+              Rp. <span className="text-[42px] font-extrabold text-white tracking-tight">218.000,00</span>
             </span>
           </div>
-          <button className="w-full bg-[#343434] text-white py-3 rounded-xl font-bold text-[14px] flex items-center justify-center gap-2 hover:bg-[#202020] transition-colors shadow-sm">
+          <button className="w-full bg-white text-[#075fd4] py-3 rounded-xl font-bold text-[14px] flex items-center justify-center gap-2 hover:bg-[#f0f7ff] transition-colors shadow-sm">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
             Tarik Saldo
           </button>
@@ -1512,58 +1538,19 @@ function WalletPanel() {
       <div className="flex-1">
         <h2 className="text-[28px] font-extrabold text-[#343434] mb-4 border-b-2 border-gray-200 pb-2">Riwayat</h2>
         <div className="flex flex-col gap-4">
-          
-          {/* Item Riwayat 1 */}
-          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
-            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
-            <div className="flex-1 flex flex-col">
-               <div className="flex justify-between items-start">
-                  <span className="text-[20px] font-extrabold text-[#343434]">+150.000</span>
-                  <span className="text-[13px] font-bold text-gray-800">Senin, 18 Mei 2026</span>
-               </div>
-               <span className="text-[14px] font-bold text-gray-800">Uang masuk</span>
-               <span className="text-[14px] font-bold text-gray-800 mt-1">Pengirim: PT Maju Jaya</span>
+           {historyItems.map((item) => (
+            <div key={`${item.date}-${item.amount}`} className="bg-white border border-gray-100 rounded-[16px] p-4 flex gap-5 items-center shadow-sm">
+              <HistoryIcon type={item.type} />
+              <div className="flex-1 flex flex-col">
+                <div className="flex justify-between items-start gap-4">
+                  <span className={`text-[20px] font-extrabold ${item.type === 'in' ? 'text-[#075fd4]' : 'text-[#f97316]'}`}>{item.amount}</span>
+                  <span className="text-[13px] font-bold text-gray-800 text-right">{item.date}</span>
+                </div>
+                <span className="text-[14px] font-bold text-gray-800">{item.label}</span>
+                <span className="text-[14px] font-bold text-gray-800 mt-1">{item.note}</span>
+              </div>
             </div>
-          </div>
-
-          {/* Item Riwayat 2 */}
-          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
-            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
-            <div className="flex-1 flex flex-col">
-               <div className="flex justify-between items-start">
-                  <span className="text-[20px] font-extrabold text-[#343434]">-50.000</span>
-                  <span className="text-[13px] font-bold text-gray-800">Sabtu, 16 Mei 2026</span>
-               </div>
-               <span className="text-[14px] font-bold text-gray-800">Uang ditarik</span>
-               <span className="text-[14px] font-bold text-gray-800 mt-1">Bank BCA</span>
-            </div>
-          </div>
-
-          {/* Item Riwayat 3 */}
-          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
-            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
-            <div className="flex-1 flex flex-col">
-               <div className="flex justify-between items-start">
-                  <span className="text-[20px] font-extrabold text-[#343434]">+75.000</span>
-                  <span className="text-[13px] font-bold text-gray-800">Rabu, 13 Mei 2026</span>
-               </div>
-               <span className="text-[14px] font-bold text-gray-800">Uang masuk</span>
-               <span className="text-[14px] font-bold text-gray-800 mt-1">Pengirim: CV Sukses Selalu</span>
-            </div>
-          </div>
-
-          {/* Item Riwayat 4 */}
-          <div className="bg-[#e5e5e5] rounded-[16px] p-4 flex gap-5 items-center">
-            <div className="w-[80px] h-[80px] bg-gray-500 rounded-xl shrink-0"></div>
-            <div className="flex-1 flex flex-col">
-               <div className="flex justify-between items-start">
-                  <span className="text-[20px] font-extrabold text-[#343434]">+43.000</span>
-                  <span className="text-[13px] font-bold text-gray-800">Minggu, 10 Mei 2026</span>
-               </div>
-               <span className="text-[14px] font-bold text-gray-800">Uang masuk</span>
-               <span className="text-[14px] font-bold text-gray-800 mt-1">Pengirim: PT Bensin</span>
-            </div>
-          </div>
+           ))}
 
         </div>
       </div>
@@ -1784,13 +1771,13 @@ function ProfilPanel({ setActiveTab, activePengaturanMenu, activePengaturanTab, 
   );
 }
 
-export default function DashboardPage() {
-  const [activeTab, setActiveTab] = useState(() => {
-    return localStorage.getItem("activeTab") || "Beranda";
+export default function DashboardPage({ routeTab, routePengaturan, onTabChange, onPengaturanChange }) {
+  const [activeTab, setActiveTabState] = useState(() => {
+    return routeTab || localStorage.getItem("activeTab") || "Beranda";
   });
 
-  const [activePengaturanMenu, setActivePengaturanMenu] = useState(() => {
-    return localStorage.getItem("activePengaturanMenu") || "profil";
+  const [activePengaturanMenu, setActivePengaturanMenuState] = useState(() => {
+    return routePengaturan || localStorage.getItem("activePengaturanMenu") || "profil";
   });
 
   const [activePengaturanTab, setActivePengaturanTab] = useState(() => {
@@ -1800,6 +1787,18 @@ export default function DashboardPage() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("kerjaria-theme") || "light";
   });
+
+  useEffect(() => {
+    if (!routeTab) return;
+    setActiveTabState((currentTab) => (currentTab === routeTab ? currentTab : routeTab));
+  }, [routeTab]);
+
+  useEffect(() => {
+    if (!routePengaturan) return;
+    setActivePengaturanMenuState((currentMenu) =>
+      currentMenu === routePengaturan ? currentMenu : routePengaturan
+    );
+  }, [routePengaturan]);
 
   // Resolve effective theme (light/dark) based on setting
   const resolvedTheme = React.useMemo(() => {
@@ -1836,6 +1835,20 @@ export default function DashboardPage() {
   }, [theme]);
 
   const isDark = resolvedTheme === 'dark';
+
+  const handleTabChange = (nextTab) => {
+    setActiveTabState(nextTab);
+    if (onTabChange) {
+      onTabChange(nextTab, activePengaturanMenu);
+    }
+  };
+
+  const handlePengaturanMenuChange = (nextMenu) => {
+    setActivePengaturanMenuState(nextMenu);
+    if (onPengaturanChange) {
+      onPengaturanChange(nextMenu);
+    }
+  };
 
   return (
     <main className={`min-h-screen font-['Plus_Jakarta_Sans',sans-serif] transition-colors duration-300 ${isDark ? 'dark bg-[#0f172a] text-gray-100' : 'bg-white text-[#20242a]'}`}>
@@ -1877,9 +1890,9 @@ export default function DashboardPage() {
 
       <div className="flex min-h-screen">
         {activeTab === "Pengaturan" ? (
-          <ProfilSidebar setActiveTab={setActiveTab} activePengaturanMenu={activePengaturanMenu} setActivePengaturanMenu={setActivePengaturanMenu} activePengaturanTab={activePengaturanTab} setActivePengaturanTab={setActivePengaturanTab} />
+          <ProfilSidebar setActiveTab={handleTabChange} activePengaturanMenu={activePengaturanMenu} setActivePengaturanMenu={handlePengaturanMenuChange} activePengaturanTab={activePengaturanTab} setActivePengaturanTab={setActivePengaturanTab} />
         ) : (
-          <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+          <Sidebar activeTab={activeTab} setActiveTab={handleTabChange} />
         )}
 
         <div className="flex min-w-0 flex-1 gap-8 px-6 py-14 lg:px-14">
@@ -1890,10 +1903,10 @@ export default function DashboardPage() {
                 <MissionPanel />
                 <EventBanner />
               </section>
-              <ProfilePanel setActiveTab={setActiveTab} />
+              <ProfilePanel setActiveTab={handleTabChange} />
             </>
           ) : activeTab === "Pengaturan" ? (
-            <ProfilPanel setActiveTab={setActiveTab} activePengaturanMenu={activePengaturanMenu} activePengaturanTab={activePengaturanTab} theme={theme} setTheme={setTheme} />
+            <ProfilPanel setActiveTab={handleTabChange} activePengaturanMenu={activePengaturanMenu} activePengaturanTab={activePengaturanTab} theme={theme} setTheme={setTheme} />
           ) : activeTab === "Misi" ? (
             <MisiPanel />
           ) : activeTab === "Sosial" ? (

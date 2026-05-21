@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const blue = "#075fd4";
@@ -31,14 +31,26 @@ const testimonials = [
 
 const faqs = [
   {
-    question: "Mengapa Tugas di SKOMDA banyak?",
+    question: "Bagaimana cara mulai menggunakan KerjaRia?",
     answer:
-      "Karena tugas sekolah dibuat untuk melatih pemahaman, kedisiplinan, tanggung jawab, dan supaya siswa terbiasa belajar serta mengingat materi yang sudah diajarkan di kelas.",
+      "Cukup daftar akun, pilih peran yang sesuai, lalu lanjutkan onboarding agar profilmu siap dipakai untuk quest, level, dan peluang pekerjaan.",
     open: true,
   },
-  { question: "Apa tujuan hidup di dunia ini?" },
-  { question: "Bagaimana cara hilangkan barang bukti?" },
-  { question: "Ini arahnya kemana?" },
+  {
+    question: "Apa itu quest di KerjaRia?",
+    answer:
+      "Quest adalah tugas atau tantangan singkat yang membantu kamu melatih skill, mengumpulkan poin, dan menaikkan level profil secara bertahap.",
+  },
+  {
+    question: "Bagaimana cara naik level dan dapat reward?",
+    answer:
+      "Selesaikan quest, ikuti event, dan aktif di dashboard untuk mengumpulkan XP. Semakin aktif kamu, semakin banyak reward yang bisa dibuka.",
+  },
+  {
+    question: "Apakah UMKM bisa memasang pekerjaan di sini?",
+    answer:
+      "Bisa. Akun UMKM dapat mengelola posting, pekerjaan, pesan, dan pengaturan profil untuk mencari kandidat yang sesuai.",
+  },
 ];
 
 function LogoMark() {
@@ -61,7 +73,7 @@ function Mascot() {
       alt="Robot KerjaRia memegang buku dan lampu"
       width="501"
       height="685"
-      className="h-auto w-full max-w-[315px] object-contain sm:max-w-[400px] lg:max-w-[455px]"
+      className="h-auto w-full max-w-[320px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[600px] object-contain"
     />
   );
 }
@@ -176,6 +188,50 @@ function TestimonialCard({ quote, name, role, avatar }) {
   );
 }
 
+function CountUpNumber({ end, suffix = '', duration = 1200, className = '' }) {
+  const [value, setValue] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || hasAnimated) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+
+        setHasAnimated(true);
+        const startTime = performance.now();
+
+        const tick = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          setValue(Math.round(end * progress));
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        };
+
+        requestAnimationFrame(tick);
+        observer.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [duration, end, hasAnimated]);
+
+  return (
+    <strong ref={ref} className={className}>
+      {value}
+      {suffix}
+    </strong>
+  );
+}
+
 function FaqRobotBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -222,33 +278,34 @@ function FaqRobotBackground() {
   );
 }
 
-function FaqItem({ question, answer, open }) {
+function FaqItem({ question, answer, open, onToggle }) {
   return (
-    <article
-      className={`relative z-10 rounded-[22px] bg-white text-[#20242a] ${
-        open ? "px-9 py-6" : "px-9 py-4"
-      }`}
-    >
-      <div className="flex items-start justify-between gap-5">
+    <article className={`relative z-10 rounded-[22px] bg-white text-[#20242a] transition-all duration-200 ${open ? "px-9 py-6" : "px-9 py-4"}`}>
+      <button
+        type="button"
+        onClick={onToggle}
+        className="flex w-full items-start justify-between gap-5 text-left"
+        aria-expanded={open}
+      >
         <div>
           <h3 className="text-[18px] font-semibold leading-[1.1] tracking-[0px]">
             {question}
           </h3>
           {open && (
-            <p className="mt-5 max-w-[455px] text-[12px] font-semibold leading-[1.05] tracking-[0px] text-[#4a4f58]">
+            <p className="mt-5 max-w-[455px] text-[12px] font-semibold leading-[1.2] tracking-[0px] text-[#4a4f58]">
               {answer}
             </p>
           )}
         </div>
 
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#075fd4] text-white">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#075fd4] text-white transition-transform duration-200">
           <span
-            className={`block h-3 w-3 border-b-[4px] border-r-[4px] border-white ${
+            className={`block h-3 w-3 border-b-[4px] border-r-[4px] border-white transition-transform duration-200 ${
               open ? "-translate-y-0 rotate-[225deg]" : "-translate-y-1 rotate-45"
             }`}
           />
         </span>
-      </div>
+      </button>
     </article>
   );
 }
@@ -329,6 +386,8 @@ function JobCard({ title, description, isMore, index = 0 }) {
 }
 
 export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
   return (
     <main className="min-h-screen bg-white font-['Plus_Jakarta_Sans',sans-serif] tracking-[0px] text-[#20242a]">
       <style>
@@ -362,7 +421,7 @@ export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
         </nav>
       </header>
 
-      <section className="mx-auto grid w-full max-w-[1100px] grid-cols-1 items-center gap-8 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[1fr_1fr] md:gap-14 md:pb-14 md:pt-7 lg:px-0">
+      <section className="mx-auto grid w-full max-w-[1300px] min-h-[72vh] grid-cols-1 items-center gap-8 px-5 pb-12 pt-8 sm:px-8 md:grid-cols-[1fr_1fr] md:gap-14 md:pb-14 md:pt-7 lg:px-4 xl:max-w-[1400px]">
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -378,13 +437,13 @@ export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           className="flex flex-col items-center text-center md:items-start md:pt-12 md:text-left"
         >
-          <h1 className="max-w-[492px] text-[38px] font-extrabold leading-[1.18] tracking-[-0.02em] text-[#20242a] sm:text-[46px] lg:text-[54px] lg:max-w-[600px] xl:text-[60px]">
+          <h1 className="max-w-[560px] text-[34px] font-extrabold leading-[1.08] tracking-[-0.02em] text-[#20242a] sm:text-[46px] md:text-[56px] lg:text-[64px] xl:text-[72px] lg:max-w-[700px]">
             Mulai Pengalaman
             <span className="block text-[#075fd4]">Kerja Pertamamu</span>
             dari Sekarang.
           </h1>
 
-          <div className="mt-16 flex w-full max-w-[230px] flex-col gap-3 md:ml-8 lg:max-w-[280px]">
+          <div className="mt-12 flex w-full max-w-[260px] flex-col gap-3 md:ml-8 lg:max-w-[340px]">
             <button
               type="button"
               onClick={onStartQuest}
@@ -423,6 +482,7 @@ export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
 
         <div className="mt-14 flex justify-center">
           <button className="flex h-[62px] items-center gap-5 rounded-[7px] bg-[#075fd4] px-9 text-[20px] font-extrabold tracking-[0px] text-white shadow-[0_8px_0_#044ca8]">
+            
             Eksplor lebih banyak bidang lainnya
             <span aria-hidden="true" className="text-[34px] leading-none">
               &rarr;
@@ -434,23 +494,29 @@ export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
       <section className="w-full bg-[#075fd4] text-white">
         <div className="mx-auto grid min-h-[110px] w-full max-w-[980px] grid-cols-1 items-center gap-6 px-5 py-7 text-center sm:grid-cols-3 sm:gap-0 sm:py-0">
           <div>
-            <strong className="block text-[40px] font-semibold leading-none tracking-[0px] sm:text-[44px]">
-              19jt
-            </strong>
+            <CountUpNumber
+              end={19}
+              suffix="jt"
+              className="block text-[40px] font-semibold leading-none tracking-[0px] sm:text-[44px]"
+            />
             <span className="mt-2 block text-[14px] font-semibold tracking-[0px]">Micro-Work</span>
           </div>
           <div>
-            <strong className="block text-[40px] font-semibold leading-none tracking-[0px] sm:text-[44px]">
-              1jt+
-            </strong>
+            <CountUpNumber
+              end={1}
+              suffix="jt+"
+              className="block text-[40px] font-semibold leading-none tracking-[0px] sm:text-[44px]"
+            />
             <span className="mt-2 block text-[14px] font-semibold tracking-[0px]">
               Course Tersedia
             </span>
           </div>
           <div>
-            <strong className="block text-[40px] font-semibold leading-none tracking-[0px] sm:text-[44px]">
-              17jt+
-            </strong>
+            <CountUpNumber
+              end={17}
+              suffix="jt+"
+              className="block text-[40px] font-semibold leading-none tracking-[0px] sm:text-[44px]"
+            />
             <span className="mt-2 block text-[14px] font-semibold tracking-[0px]">
               Peserta Terdaftar
             </span>
@@ -504,8 +570,13 @@ export default function LandingPage({ onStartQuest, onDaftar, onLogin }) {
           </h2>
 
           <div className="mt-8 flex flex-col gap-5">
-            {faqs.map((item) => (
-              <FaqItem key={item.question} {...item} />
+            {faqs.map((item, index) => (
+              <FaqItem
+                key={item.question}
+                {...item}
+                open={openFaqIndex === index}
+                onToggle={() => setOpenFaqIndex(openFaqIndex === index ? -1 : index)}
+              />
             ))}
           </div>
         </div>

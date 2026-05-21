@@ -14,10 +14,11 @@ function RobotEars() {
   );
 }
 
-export default function RegistrationPage({ onClose, onLogin, onRegister }) {
+export default function RegistrationPage({ role, onClose, onLogin, onRegister }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const isUmkm = role === "umkm";
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#dbeafe] font-['Plus_Jakarta_Sans',sans-serif]">
@@ -57,14 +58,20 @@ export default function RegistrationPage({ onClose, onLogin, onRegister }) {
             transition={{ delay: 0.25, duration: 0.4 }}
             className="text-center text-[32px] font-extrabold leading-none tracking-[-0.02em] text-white mb-8"
           >
-            Buat profil
+            {isUmkm ? "Buat akun UMKM" : "Buat profil"}
           </motion.h1>
+
+          {isUmkm && (
+            <p className="-mt-3 mb-8 text-center text-[13px] font-semibold leading-[1.4] tracking-[0px] text-white/90">
+              Lengkapi data akun agar kamu bisa langsung masuk ke dashboard UMKM.
+            </p>
+          )}
 
           {/* Form fields */}
           <div className="flex flex-col gap-4">
             <motion.input
               type="text"
-              placeholder="Nama Pengguna"
+              placeholder={isUmkm ? "Nama UMKM / Nama Pengguna" : "Nama Pengguna"}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               initial={{ opacity: 0, x: -20 }}
@@ -74,7 +81,7 @@ export default function RegistrationPage({ onClose, onLogin, onRegister }) {
             />
             <motion.input
               type="email"
-              placeholder="Email"
+              placeholder={isUmkm ? "Email bisnis / kontak" : "Email"}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               initial={{ opacity: 0, x: -20 }}
@@ -103,7 +110,7 @@ export default function RegistrationPage({ onClose, onLogin, onRegister }) {
               whileTap={{ scale: 0.97 }}
               className="mt-2 h-[50px] w-full rounded-[10px] bg-white text-[18px] font-extrabold text-[#343434] shadow-[0_5px_0_#c0c0c0] hover:shadow-[0_8px_0_#c0c0c0] transition-shadow duration-300"
             >
-              BUAT
+              {isUmkm ? "BUAT AKUN" : "BUAT"}
             </motion.button>
           </div>
 

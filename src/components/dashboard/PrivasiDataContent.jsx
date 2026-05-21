@@ -5,51 +5,55 @@ export default function PrivasiDataContent() {
   const [isVerifikasiOpen, setIsVerifikasiOpen] = React.useState(false);
 
   return (
-    <div className="w-full max-w-[800px] mx-auto mt-8">
-      {/* Container Biru */}
-      <div className="bg-[#075fd4] rounded-[24px] p-8 shadow-lg relative overflow-hidden">
-        {/* Header Profile */}
-        <div className="flex justify-between items-center mb-8 relative z-10">
-          <div className="flex items-center gap-5">
-            <div className="w-[80px] h-[80px] rounded-full border-4 border-[#ffd245] overflow-hidden bg-white shadow-md shrink-0">
-              <img src="/avatar-placeholder.png" alt="Avatar" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }} />
+    <div className="w-full max-w-[760px] mx-auto mt-6">
+      <div className="rounded-[18px] bg-[#075fd4] p-6 pt-7 shadow-[0_12px_24px_rgba(7,95,212,0.18)]">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="h-[72px] w-[72px] overflow-hidden rounded-full border-[4px] border-[#ffd246] bg-white shadow-md shrink-0">
+              <img src="/avatar-placeholder.png" alt="Avatar" className="h-full w-full object-cover" onError={(e) => { e.target.src = 'https://via.placeholder.com/150'; }} />
             </div>
-            <h2 className="text-[22px] sm:text-[26px] font-extrabold text-white">Raffi Setiawan Putra</h2>
+            <h2 className="text-[20px] font-extrabold leading-tight text-white sm:text-[22px]">
+              Raffi Setiawan Putra
+            </h2>
           </div>
-          <button 
+
+          <button
+            type="button"
             onClick={() => setIsVerifikasiOpen(true)}
-            className="bg-white text-[#075fd4] px-6 py-2.5 rounded-full font-extrabold text-[14px] flex items-center gap-2 hover:bg-blue-50 transition-colors shadow-sm active:scale-95"
+            className="flex items-center gap-2 rounded-[8px] bg-white px-4 py-2 text-[12px] font-extrabold text-[#075fd4] shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
             Verifikasi
-            <div className="w-4 h-4 rounded-full bg-gray-400 text-white flex items-center justify-center text-[10px]">?</div>
+            <span className="grid h-4 w-4 place-items-center rounded-full bg-[#6b7280] text-[10px] font-bold text-white">
+              ?
+            </span>
           </button>
         </div>
 
-        {/* White Card (Email & Password) */}
-        <div className="bg-white rounded-xl p-6 shadow-sm relative z-10">
-          <div className="flex justify-between items-center border-b border-gray-100 pb-5 mb-5">
+        <div className="mt-6 rounded-[12px] bg-white p-5 shadow-sm">
+          <div className="flex items-start justify-between gap-4 border-b border-gray-100 pb-4">
             <div>
-              <h3 className="text-[17px] font-extrabold text-[#343434]">Email</h3>
-              <p className="text-[14px] font-bold text-gray-500 mt-0.5">kanaiakasa@gmail.com</p>
+              <h3 className="text-[16px] font-extrabold text-[#343434]">Email</h3>
+              <p className="mt-0.5 text-[13px] font-bold text-gray-500">kanaiakasa@gmail.com</p>
             </div>
-            <button className="bg-[#075fd4] text-white px-8 py-2 rounded-full font-bold text-[14px] hover:bg-[#0650b3] transition-colors">
+            <button className="min-w-[56px] rounded-full bg-[#075fd4] px-4 py-1.5 text-[13px] font-bold text-white transition-colors hover:bg-[#0650b3]">
               Edit
             </button>
           </div>
-          <div className="flex justify-between items-center">
+
+          <div className="flex items-start justify-between gap-4 pt-4">
             <div>
-              <h3 className="text-[17px] font-extrabold text-[#343434]">Password</h3>
-              <p className="text-[14px] font-bold text-gray-500 mt-1 tracking-[4px]">************</p>
+              <h3 className="text-[16px] font-extrabold text-[#343434]">Password</h3>
+              <p className="mt-1 text-[13px] font-bold tracking-[4px] text-gray-500">************</p>
             </div>
-            <button className="bg-[#075fd4] text-white px-8 py-2 rounded-full font-bold text-[14px] hover:bg-[#0650b3] transition-colors">
+            <button className="min-w-[56px] rounded-full bg-[#075fd4] px-4 py-1.5 text-[13px] font-bold text-white transition-colors hover:bg-[#0650b3]">
               Edit
             </button>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-end mt-4">
-        <button className="bg-[#ff3b30] text-white px-6 py-2.5 rounded-[8px] font-bold text-[14px] hover:bg-[#d63027] transition-colors shadow-sm">
+      <div className="mt-5 flex justify-end">
+        <button className="rounded-[8px] bg-[#ff2b20] px-6 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#d93026]">
           Hapus Akun
         </button>
       </div>
